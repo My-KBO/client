@@ -3,7 +3,7 @@
 ### 폴더구조
 
 ```
-my-app
+client
 ├── public  # 정적 파일
 ├─ src  # 컴파일 처리되는 파일
  ├─ components  # 재사용 컴포넌트
