@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Button } from '@mui/material';
+import TeamDashboardPage from './pages/team-dashboard-page';
 
 function Home() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mypage" element={<About />} />
+        <Route path="/teams" element={<TeamDashboardPage />} />
       </Routes>
     </BrowserRouter>
   );
