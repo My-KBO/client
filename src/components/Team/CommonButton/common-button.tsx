@@ -6,10 +6,10 @@ type TProps = {
 };
 
 const CommonButton = ({ children, variant = 'filled' }: TProps) => {
-  const baseStyle = 'text-sm w-40 py-3 rounded-lg';
+  const baseStyle = 'text-sm w-40 rounded-lg';
 
-  const filledStyle = 'bg-kbo-blue text-white';
-  const outlinedStyle = 'border border-kbo-blue text-kbo-blue';
+  const filledStyle = 'bg-kbo-blue text-white py-3';
+  const outlinedStyle = 'border border-kbo-blue text-kbo-blue py-2';
 
   const style = variant === 'filled' ? filledStyle : outlinedStyle;
 
