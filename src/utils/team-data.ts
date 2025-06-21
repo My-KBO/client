@@ -10,13 +10,13 @@ export const TEAM_DATA: Record<
   }
 > = {
   lg: {
-    name: 'LG 트윈스',
+    name: 'LG Twins',
     sloganImage: require('../assets/images/lg-twins-slogan.jpg'),
     logoImage: require('../assets/images/엘지 트윈스 로고.jpg'),
     description: '엘지 트윈스는 KBO 리그의 자랑스러운 프로야구 팀입니다.',
   },
   kia: {
-    name: 'KIA 타이거즈',
+    name: 'KIA Tigers',
     sloganImage: require('../assets/images/기아 타이거즈 슬로건.jpg'),
     logoImage: require('../assets/images/기아 타이거즈 로고.png'),
     description: '기아 타이거즈는 KBO 리그의 자랑스러운 프로야구 팀입니다.',

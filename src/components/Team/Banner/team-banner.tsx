@@ -25,7 +25,7 @@ const TeamBanner = ({ teamKey }: TeamBannerProps) => {
             className="h-16 mr-10"
           />
           <div>
-            <h2 className="text-2xl font-semibold">{team.name}</h2>
+            <h2 className="text-xl font-semibold">{team.name}</h2>
             <p className="text-gray-600">{team.description}</p>
           </div>
         </div>
