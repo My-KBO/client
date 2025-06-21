@@ -17,8 +17,8 @@ export const TEAM_DATA: Record<
   },
   kia: {
     name: 'KIA 타이거즈',
-    sloganImage: require('../assets/images/lg-twins-slogan.jpg'),
-    logoImage: require('../assets/images/엘지 트윈스 로고.jpg'),
+    sloganImage: require('../assets/images/기아 타이거즈 슬로건.jpg'),
+    logoImage: require('../assets/images/기아 타이거즈 로고.png'),
     description: '기아 타이거즈는 KBO 리그의 자랑스러운 프로야구 팀입니다.',
   },
   // 다른 팀들도 추가 예정

@@ -5,7 +5,6 @@ const TeamDashboardPage = () => {
   return (
     <div>
       <TeamBanner teamKey="lg" />
-      <TeamInfoButton />
     </div>
   );
 };
