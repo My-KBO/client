@@ -3,8 +3,8 @@ import MatchCard from './match-card';
 
 const MatchSchedule = () => {
   return (
-    <div>
-      <div>팀 경기 일정</div>
+    <div className="grid place-items-center">
+      <div className="text-2xl font-semibold">팀 경기 일정</div>
       <CommonButton variant="outlined">경기 전체 일정</CommonButton>
       <div className="flex">
         <MatchCard></MatchCard>
