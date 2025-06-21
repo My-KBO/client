@@ -31,6 +31,7 @@ const TeamBanner = ({ teamKey }: TeamBannerProps) => {
         </div>
         <TeamInfoButton />
       </div>
+      <hr className="border-t border-gray-100 my-8" />
     </div>
   );
 };
