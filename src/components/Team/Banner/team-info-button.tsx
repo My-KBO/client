@@ -1,4 +1,4 @@
-import CommonButton from '../CommonButton/CommonButton';
+import CommonButton from '../CommonButton/common-button';
 
 const TeamInfoButton = () => {
   return (
