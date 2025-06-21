@@ -88,48 +88,6 @@ const matchList = [
       logo: lgLogo,
     },
   },
-  {
-    date: '6월 28일 (금)',
-    time: '18:30',
-    stadium: '광주',
-    homeTeam: {
-      name: (
-        <>
-          KIA <br /> 타이거즈
-        </>
-      ),
-      logo: kiaLogo,
-    },
-    awayTeam: {
-      name: (
-        <>
-          LG <br /> 트윈스
-        </>
-      ),
-      logo: lgLogo,
-    },
-  },
-  {
-    date: '6월 28일 (금)',
-    time: '18:30',
-    stadium: '광주',
-    homeTeam: {
-      name: (
-        <>
-          KIA <br /> 타이거즈
-        </>
-      ),
-      logo: kiaLogo,
-    },
-    awayTeam: {
-      name: (
-        <>
-          LG <br /> 트윈스
-        </>
-      ),
-      logo: lgLogo,
-    },
-  },
 ];
 
 const MatchSchedule = () => {
@@ -137,7 +95,7 @@ const MatchSchedule = () => {
     <div className="grid place-items-center">
       <div className="text-2xl font-semibold mt-4 mb-4">팀 경기 일정</div>
       <CommonButton variant="outlined">경기 전체 일정</CommonButton>
-      <div className="grid grid-cols-6 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         {matchList.map((match, index) => (
           <MatchCard key={index} {...match} />
         ))}
