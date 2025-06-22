@@ -17,7 +17,7 @@ const TeamBanner = ({ teamKey }: TeamBannerProps) => {
         className="w-full h-80 object-cover"
       />
       {/* 팀 로고와 이름, 설명, 굿즈샵 및 공식홈 버튼 */}
-      <div className="flex justify-between items-center gap-4 ml-28 mr-28 mt-10 mb-10">
+      <div className="flex justify-between items-center gap-4 ml-40 mr-40 mt-10 mb-10">
         <div className="flex">
           <img
             src={team.logoImage}

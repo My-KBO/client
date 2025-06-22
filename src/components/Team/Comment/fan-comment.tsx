@@ -15,8 +15,8 @@ const FanComments = [
 
 const FanComment = () => {
   return (
-    <div className="grid place-items-center mt-4">
-      <div className="flex justify-between">
+    <div className="mt-6 w-full max-w-5xl mx-auto">
+      <div className="flex justify-between mb-16">
         {/* 제목 + 버튼 */}
         <div className="items-center px-8 mr-8">
           <h2 className="text-2xl font-semibold mb-4">팬들의 응원</h2>
@@ -30,7 +30,7 @@ const FanComment = () => {
           ))}
         </div>
       </div>
-      <hr className="border-t border-gray-100 my-8" />
+      {/* <hr className="border-t border-gray-100 my-8 mt-16" /> */}
     </div>
   );
 };

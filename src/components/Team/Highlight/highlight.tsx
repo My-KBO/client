@@ -37,7 +37,7 @@ const Highlight = ({ teamKey }: HighlightProps) => {
   const team = TEAM_DATA[teamKey];
   return (
     <div className="grid place-items-center">
-      <div className="text-2xl font-semibold mt-4 mb-4">
+      <div className="text-2xl font-semibold mt-6 mb-4">
         {team.name} 하이라이트
       </div>
       <div className="grid grid-cols-5 gap-4">
