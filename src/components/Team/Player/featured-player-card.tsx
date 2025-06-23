@@ -6,6 +6,7 @@ type FeaturedPlayerCardProps = {
   name: string;
   statLabel: string;
   statValue: string;
+  playerImage: string;
 };
 
 const FeaturedPlayerCard = ({
@@ -14,12 +15,20 @@ const FeaturedPlayerCard = ({
   name,
   statLabel,
   statValue,
+  playerImage,
 }: FeaturedPlayerCardProps) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-4 mt-6 text-sm text-gray-700">
       <div className="flex items-center gap-4 ml-2">
         {/* 왼쪽: 타이틀 */}
         <div className="font-semibold min-w-[72px]">{title}</div>
+
+        {/* 가운데: 원형 이미지 */}
+        <img
+          src={playerImage}
+          alt={name}
+          className="w-12 h-12 rounded-full object-cover"
+        />
 
         {/* 오른쪽: 포지션 + 이름/기록 */}
         <div className="flex flex-col gap-1 w-full">

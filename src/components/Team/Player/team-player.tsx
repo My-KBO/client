@@ -1,5 +1,6 @@
 import CommonButton from '../CommonButton/common-button';
 import FeaturedPlayerCard from './featured-player-card';
+import kimDoyoungImg from '../../../assets/images/김도영.png';
 
 const featuredPlayers = [
   {
@@ -9,6 +10,7 @@ const featuredPlayers = [
     statLabel: '타율',
     statValue: '0.500',
     className: 'w-1/2',
+    playerImage: kimDoyoungImg,
   },
   {
     title: '인기 타자',
@@ -17,6 +19,7 @@ const featuredPlayers = [
     statLabel: '타율',
     statValue: '0.500',
     className: 'w-1/2',
+    playerImage: kimDoyoungImg,
   },
 ];
 
