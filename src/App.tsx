@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Button } from '@mui/material';
+import SignUp from './pages/sign-up';
+
 
 function Home() {
   return (
@@ -23,7 +25,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mypage" element={<About />} />
+        <Route path="/signup" element={<SignUp />} /> {/*회원가입 페이지*/}
       </Routes>
     </BrowserRouter>
   );
