@@ -25,7 +25,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mypage" element={<About />} />
-        <Route path="/teams" element={<TeamDashboardPage />} />
+        <Route
+          path="/baseballs/teams/:teamId"
+          element={<TeamDashboardPage />}
+        />
       </Routes>
     </BrowserRouter>
   );
