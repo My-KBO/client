@@ -1,4 +1,5 @@
-import { TEAM_DATA, TeamKey } from '../../../utils/team-data';
+import { TEAM_DATA } from '../../../utils/team-data';
+import { TeamKey } from '../../../utils/team-key-map';
 import TeamInfoButton from './team-info-button';
 
 type TeamBannerProps = {
@@ -29,7 +30,7 @@ const TeamBanner = ({ teamKey }: TeamBannerProps) => {
             <p className="text-gray-600">{team.description}</p>
           </div>
         </div>
-        <TeamInfoButton />
+        <TeamInfoButton teamName={team.name} />
       </div>
       <hr className="border-t border-gray-100 my-8" />
     </div>

@@ -3,9 +3,10 @@ import React from 'react';
 type TProps = {
   children: React.ReactNode;
   variant: 'filled' | 'outlined';
+  onClick?: () => void;
 };
 
-const CommonButton = ({ children, variant = 'filled' }: TProps) => {
+const CommonButton = ({ children, variant = 'filled', onClick }: TProps) => {
   const baseStyle = 'text-sm w-40 rounded-lg';
 
   const filledStyle = 'bg-kbo-blue text-white py-3';
@@ -13,7 +14,11 @@ const CommonButton = ({ children, variant = 'filled' }: TProps) => {
 
   const style = variant === 'filled' ? filledStyle : outlinedStyle;
 
-  return <button className={`${baseStyle} ${style}`}> {children}</button>;
+  return (
+    <button className={`${baseStyle} ${style}`} onClick={onClick}>
+      {children}
+    </button>
+  );
 };
 
 export default CommonButton;
