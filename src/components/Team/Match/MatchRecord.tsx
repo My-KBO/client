@@ -1,5 +1,5 @@
-import CommonButton from '../CommonButton/common-button';
-import MatchRecordCard from './match-record-card';
+import CommonButton from '../CommonButton/CommonButton';
+import MatchRecordCard from './MatchRecordCard';
 
 const matchRecords = [
   {

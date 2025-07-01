@@ -1,13 +1,13 @@
-import TeamBanner from '../components/Team/Banner/team-banner';
-import FanComment from '../components/Team/Comment/fan-comment';
+import TeamBanner from '../components/Team/Banner/TeamBanner';
+import FanComment from '../components/Team/Comment/FanComment';
 import Highlight from '../components/common/Highlight/highlight';
-import MatchRecord from '../components/Team/Match/match-record';
-import MatchSchedule from '../components/Team/Match/match-schedule';
-import TeamPlayer from '../components/Team/Player/team-player';
+import MatchRecord from '../components/Team/Match/MatchRecord';
+import MatchSchedule from '../components/Team/Match/MatchSchedule';
+import TeamPlayer from '../components/Team/Player/TeamPlayer';
 import TeamNews from '../components/common/TeamNews/team-news';
 
 import { useParams } from 'react-router-dom';
-import { TeamKey, teamKeyMap } from '../utils/team-key-map';
+import { TeamKey, teamKeyMap } from '../utils/teamKeyMap';
 
 const TeamDashboardPage = () => {
   const { teamId } = useParams<{ teamId: string }>();
@@ -22,7 +22,7 @@ const TeamDashboardPage = () => {
   return (
     <div>
       <TeamBanner teamKey={teamKey} />
-      <MatchSchedule />
+      <MatchSchedule teamKey={teamKey} />
       <MatchRecord />
       <TeamPlayer />
       <FanComment />

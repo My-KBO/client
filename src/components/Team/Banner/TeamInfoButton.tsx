@@ -1,6 +1,5 @@
-import CommonButton from '../CommonButton/common-button';
-import { teamLinks } from '../../../utils/team-links';
-import { TeamKey } from '../../../utils/team-key-map';
+import CommonButton from '../CommonButton/CommonButton';
+import { teamLinks } from '../../../utils/teamLinks';
 
 interface TeamInfoButtonProps {
   teamName: string;

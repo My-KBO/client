@@ -1,5 +1,5 @@
-import { TEAM_DATA } from '../../../utils/team-data';
-import { TeamKey } from '../../../utils/team-key-map';
+import { TEAM_DATA } from '../../../utils/teamData';
+import { TeamKey } from '../../../utils/teamKeyMap';
 import HighlightCard from './highlight-card';
 
 type HighlightProps = {

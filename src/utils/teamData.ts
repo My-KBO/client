@@ -1,4 +1,4 @@
-import { TeamKey } from './team-key-map';
+import { TeamKey } from './teamKeyMap';
 
 export const TEAM_DATA: Record<
   TeamKey,

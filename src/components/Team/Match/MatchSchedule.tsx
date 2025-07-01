@@ -1,7 +1,10 @@
-import CommonButton from '../CommonButton/common-button';
-import MatchCard from './match-card';
+import CommonButton from '../CommonButton/CommonButton';
+import MatchCard from './MatchCard';
 import lgLogo from '../../../assets/images/엘지 트윈스 로고.jpg';
 import kiaLogo from '../../../assets/images/기아 타이거즈 로고.png';
+import { TeamKey } from '../../../utils/teamKeyMap';
+import { useEffect, useState } from 'react';
+import { getTeamSchedule } from '../../../services/teamService';
 
 const matchList = [
   {
@@ -90,7 +93,23 @@ const matchList = [
   },
 ];
 
-const MatchSchedule = () => {
+type TeamBannerProps = {
+  teamKey: TeamKey;
+};
+
+const MatchSchedule = ({ teamKey }: TeamBannerProps) => {
+  const [schedule, setSchedule] = useState<any>(null); // API 응답 저장용
+
+  useEffect(() => {
+    getTeamSchedule(teamKey)
+      .then((data) => {
+        setSchedule(data); // API 데이터 저장
+      })
+      .catch((err) => {
+        console.error('경기 일정 불러오기 실패:', err);
+      });
+  }, [teamKey]);
+
   return (
     <div className="grid place-items-center">
       <div className="text-2xl font-semibold mt-4 mb-4">팀 경기 일정</div>
@@ -99,6 +118,12 @@ const MatchSchedule = () => {
         {matchList.map((match, index) => (
           <MatchCard key={index} {...match} />
         ))}
+      </div>
+      <div>
+        <h1>API 테스트</h1>
+        <pre>
+          {schedule ? JSON.stringify(schedule, null, 2) : '불러오는 중...'}
+        </pre>
       </div>
       <hr className="border-t border-gray-100 my-8" />
     </div>

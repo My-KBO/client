@@ -1,5 +1,5 @@
-import CommonButton from '../CommonButton/common-button';
-import FeaturedPlayerCard from './featured-player-card';
+import CommonButton from '../CommonButton/CommonButton';
+import FeaturedPlayerCard from './FeaturedPlayerCard';
 import kimDoyoungImg from '../../../assets/images/김도영.png';
 
 const featuredPlayers = [

@@ -1,6 +1,6 @@
 import React from 'react';
-import CommonButton from '../CommonButton/common-button';
-import FanCommentCard from './fan-comment-card';
+import CommonButton from '../CommonButton/CommonButton';
+import FanCommentCard from './FanCommentCard';
 
 const FanComments = [
   {

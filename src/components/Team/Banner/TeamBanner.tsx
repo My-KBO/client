@@ -1,6 +1,6 @@
-import { TEAM_DATA } from '../../../utils/team-data';
-import { TeamKey } from '../../../utils/team-key-map';
-import TeamInfoButton from './team-info-button';
+import { TEAM_DATA } from '../../../utils/teamData';
+import { TeamKey } from '../../../utils/teamKeyMap';
+import TeamInfoButton from './TeamInfoButton';
 
 type TeamBannerProps = {
   teamKey: TeamKey;
