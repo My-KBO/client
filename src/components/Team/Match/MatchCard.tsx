@@ -6,11 +6,11 @@ type MatchCardProps = {
   stadium: string;
   homeTeam: {
     name: React.ReactNode;
-    logo: string;
+    emblem: string;
   };
   awayTeam: {
     name: React.ReactNode;
-    logo: string;
+    emblem: string;
   };
 };
 
@@ -31,8 +31,8 @@ const MatchCard = ({
         {/* Away Team */}
         <div className="flex flex-col items-center gap-1">
           <img
-            src={awayTeam.logo}
-            alt={`${awayTeam.name} 로고`}
+            src={awayTeam.emblem}
+            alt={`${awayTeam.name} 엠블럼`}
             className="w-12 h-12 object-contain"
           />
           <span className="text-sm font-semibold">{awayTeam.name}</span>
@@ -44,8 +44,8 @@ const MatchCard = ({
         {/* Home Team */}
         <div className="flex flex-col items-center gap-1">
           <img
-            src={homeTeam.logo}
-            alt={`${homeTeam.name} 로고`}
+            src={homeTeam.emblem}
+            alt={`${homeTeam.name} 엠블럼`}
             className="w-12 h-12 object-contain"
           />
           <span className="text-sm font-semibold">{homeTeam.name}</span>

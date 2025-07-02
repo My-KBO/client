@@ -2,104 +2,113 @@ import CommonButton from '../CommonButton/CommonButton';
 import MatchCard from './MatchCard';
 import lgLogo from '../../../assets/images/TeamEmblem/lg-twins-emblem.jpg';
 import kiaLogo from '../../../assets/images/TeamEmblem/kia-tigers-emblem.png';
-import { TeamName } from '../../../utils/teamNameMap';
+import { TeamName, teamDisplayNameMap } from '../../../utils/teamNameMap';
+import { teamEmblemMap } from '../../../utils/teamEmblemMap';
 import { useEffect, useState } from 'react';
 import { getTeamSchedule } from '../../../services/teamService';
 
-const matchList = [
-  {
-    date: '6월 28일 (금)',
-    time: '18:30',
-    stadium: '광주',
-    homeTeam: {
-      name: (
-        <>
-          KIA <br /> 타이거즈
-        </>
-      ),
-      logo: kiaLogo,
-    },
-    awayTeam: {
-      name: (
-        <>
-          LG <br /> 트윈스
-        </>
-      ),
-      logo: lgLogo,
-    },
-  },
-  {
-    date: '6월 28일 (금)',
-    time: '18:30',
-    stadium: '광주',
-    homeTeam: {
-      name: (
-        <>
-          KIA <br /> 타이거즈
-        </>
-      ),
-      logo: kiaLogo,
-    },
-    awayTeam: {
-      name: (
-        <>
-          LG <br /> 트윈스
-        </>
-      ),
-      logo: lgLogo,
-    },
-  },
-  {
-    date: '6월 28일 (금)',
-    time: '18:30',
-    stadium: '광주',
-    homeTeam: {
-      name: (
-        <>
-          KIA <br /> 타이거즈
-        </>
-      ),
-      logo: kiaLogo,
-    },
-    awayTeam: {
-      name: (
-        <>
-          LG <br /> 트윈스
-        </>
-      ),
-      logo: lgLogo,
-    },
-  },
-  {
-    date: '6월 28일 (금)',
-    time: '18:30',
-    stadium: '광주',
-    homeTeam: {
-      name: (
-        <>
-          KIA <br /> 타이거즈
-        </>
-      ),
-      logo: kiaLogo,
-    },
-    awayTeam: {
-      name: (
-        <>
-          LG <br /> 트윈스
-        </>
-      ),
-      logo: lgLogo,
-    },
-  },
-];
+// const matchList = [
+//   {
+//     date: '6월 28일 (금)',
+//     time: '18:30',
+//     stadium: '광주',
+//     homeTeam: {
+//       name: (
+//         <>
+//           KIA <br /> 타이거즈
+//         </>
+//       ),
+//       emblem: kiaLogo,
+//     },
+//     awayTeam: {
+//       name: (
+//         <>
+//           LG <br /> 트윈스
+//         </>
+//       ),
+//       emblem: lgLogo,
+//     },
+//   },
+//   {
+//     date: '6월 28일 (금)',
+//     time: '18:30',
+//     stadium: '광주',
+//     homeTeam: {
+//       name: (
+//         <>
+//           KIA <br /> 타이거즈
+//         </>
+//       ),
+//       emblem: kiaLogo,
+//     },
+//     awayTeam: {
+//       name: (
+//         <>
+//           LG <br /> 트윈스
+//         </>
+//       ),
+//       emblem: lgLogo,
+//     },
+//   },
+//   {
+//     date: '6월 28일 (금)',
+//     time: '18:30',
+//     stadium: '광주',
+//     homeTeam: {
+//       name: (
+//         <>
+//           KIA <br /> 타이거즈
+//         </>
+//       ),
+//       emblem: kiaLogo,
+//     },
+//     awayTeam: {
+//       name: (
+//         <>
+//           LG <br /> 트윈스
+//         </>
+//       ),
+//       emblem: lgLogo,
+//     },
+//   },
+//   {
+//     date: '6월 28일 (금)',
+//     time: '18:30',
+//     stadium: '광주',
+//     homeTeam: {
+//       name: (
+//         <>
+//           KIA <br /> 타이거즈
+//         </>
+//       ),
+//       emblem: kiaLogo,
+//     },
+//     awayTeam: {
+//       name: (
+//         <>
+//           LG <br /> 트윈스
+//         </>
+//       ),
+//       emblem: lgLogo,
+//     },
+//   },
+// ];
+
+type Match = {
+  date: string;
+  time: string;
+  homeTeam: string;
+  awayTeam: string;
+  stadium: string;
+};
 
 type TemaScheduleProps = {
-  // teamName: TeamName;
-  teamName: string;
+  teamName: TeamName;
+  // teamName: string;
 };
 
 const MatchSchedule = ({ teamName }: TemaScheduleProps) => {
-  const [schedule, setSchedule] = useState<any>(null); // API 응답 저장용
+  const [schedule, setSchedule] = useState<Match[]>([]); // API 응답 저장용
 
   useEffect(() => {
     getTeamSchedule(teamName)
@@ -111,20 +120,38 @@ const MatchSchedule = ({ teamName }: TemaScheduleProps) => {
       });
   }, [teamName]);
 
+  const parsedSchedule = schedule.map((match) => ({
+    date: match.date,
+    time: match.time,
+    stadium: match.stadium,
+    homeTeam: {
+      name: (
+        <>
+          {match.homeTeam} <br />{' '}
+          {teamDisplayNameMap[match.homeTeam as TeamName]}
+        </>
+      ),
+      emblem: teamEmblemMap[match.homeTeam as TeamName],
+    },
+    awayTeam: {
+      name: (
+        <>
+          {match.awayTeam} <br />{' '}
+          {teamDisplayNameMap[match.awayTeam as TeamName]}
+        </>
+      ),
+      emblem: teamEmblemMap[match.awayTeam as TeamName],
+    },
+  }));
+
   return (
     <div className="grid place-items-center">
       <div className="text-2xl font-semibold mt-4 mb-4">팀 경기 일정</div>
       <CommonButton variant="outlined">경기 전체 일정</CommonButton>
       <div className="grid grid-cols-4 gap-4">
-        {matchList.map((match, index) => (
+        {parsedSchedule.map((match, index) => (
           <MatchCard key={index} {...match} />
         ))}
-      </div>
-      <div>
-        <h1>API 테스트</h1>
-        <pre>
-          {schedule ? JSON.stringify(schedule, null, 2) : '불러오는 중...'}
-        </pre>
       </div>
       <hr className="border-t border-gray-100 my-8" />
     </div>
