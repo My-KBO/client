@@ -1,7 +1,7 @@
 import CommonButton from '../CommonButton/CommonButton';
 import MatchCard from './MatchCard';
-import lgLogo from '../../../assets/images/엘지 트윈스 로고.jpg';
-import kiaLogo from '../../../assets/images/기아 타이거즈 로고.png';
+import lgLogo from '../../../assets/images/TeamEmblem/lg-twins-emblem.jpg';
+import kiaLogo from '../../../assets/images/TeamEmblem/kia-tigers-emblem.png';
 import { TeamKey } from '../../../utils/teamKeyMap';
 import { useEffect, useState } from 'react';
 import { getTeamSchedule } from '../../../services/teamService';
