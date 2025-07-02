@@ -1,7 +1,5 @@
 import CommonButton from '../CommonButton/CommonButton';
 import MatchCard from './MatchCard';
-import lgLogo from '../../../assets/images/TeamEmblem/lg-twins-emblem.jpg';
-import kiaLogo from '../../../assets/images/TeamEmblem/kia-tigers-emblem.png';
 import { TeamName, teamDisplayNameMap } from '../../../utils/teamNameMap';
 import { teamEmblemMap } from '../../../utils/teamEmblemMap';
 import { useEffect, useState } from 'react';
