@@ -8,9 +8,9 @@ type Match = {
   date: string;
   time: string;
   homeTeam: string;
-  homeScore: number;
+  homeScore: string;
   awayTeam: string;
-  awayScore: number;
+  awayScore: string;
   stadium: string;
 };
 
