@@ -7,93 +7,6 @@ import { teamEmblemMap } from '../../../utils/teamEmblemMap';
 import { useEffect, useState } from 'react';
 import { getTeamSchedule } from '../../../services/teamService';
 
-// const matchList = [
-//   {
-//     date: '6월 28일 (금)',
-//     time: '18:30',
-//     stadium: '광주',
-//     homeTeam: {
-//       name: (
-//         <>
-//           KIA <br /> 타이거즈
-//         </>
-//       ),
-//       emblem: kiaLogo,
-//     },
-//     awayTeam: {
-//       name: (
-//         <>
-//           LG <br /> 트윈스
-//         </>
-//       ),
-//       emblem: lgLogo,
-//     },
-//   },
-//   {
-//     date: '6월 28일 (금)',
-//     time: '18:30',
-//     stadium: '광주',
-//     homeTeam: {
-//       name: (
-//         <>
-//           KIA <br /> 타이거즈
-//         </>
-//       ),
-//       emblem: kiaLogo,
-//     },
-//     awayTeam: {
-//       name: (
-//         <>
-//           LG <br /> 트윈스
-//         </>
-//       ),
-//       emblem: lgLogo,
-//     },
-//   },
-//   {
-//     date: '6월 28일 (금)',
-//     time: '18:30',
-//     stadium: '광주',
-//     homeTeam: {
-//       name: (
-//         <>
-//           KIA <br /> 타이거즈
-//         </>
-//       ),
-//       emblem: kiaLogo,
-//     },
-//     awayTeam: {
-//       name: (
-//         <>
-//           LG <br /> 트윈스
-//         </>
-//       ),
-//       emblem: lgLogo,
-//     },
-//   },
-//   {
-//     date: '6월 28일 (금)',
-//     time: '18:30',
-//     stadium: '광주',
-//     homeTeam: {
-//       name: (
-//         <>
-//           KIA <br /> 타이거즈
-//         </>
-//       ),
-//       emblem: kiaLogo,
-//     },
-//     awayTeam: {
-//       name: (
-//         <>
-//           LG <br /> 트윈스
-//         </>
-//       ),
-//       emblem: lgLogo,
-//     },
-//   },
-// ];
-
 type Match = {
   date: string;
   time: string;
@@ -104,7 +17,6 @@ type Match = {
 
 type TemaScheduleProps = {
   teamName: TeamName;
-  // teamName: string;
 };
 
 const MatchSchedule = ({ teamName }: TemaScheduleProps) => {
@@ -127,7 +39,7 @@ const MatchSchedule = ({ teamName }: TemaScheduleProps) => {
     homeTeam: {
       name: (
         <>
-          {match.homeTeam} <br />{' '}
+          {match.homeTeam} <br />
           {teamDisplayNameMap[match.homeTeam as TeamName]}
         </>
       ),
@@ -136,7 +48,7 @@ const MatchSchedule = ({ teamName }: TemaScheduleProps) => {
     awayTeam: {
       name: (
         <>
-          {match.awayTeam} <br />{' '}
+          {match.awayTeam} <br />
           {teamDisplayNameMap[match.awayTeam as TeamName]}
         </>
       ),
