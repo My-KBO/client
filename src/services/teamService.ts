@@ -6,3 +6,10 @@ export const getTeamSchedule = async (teamName: string) => {
   );
   return response.data;
 };
+
+export const getTeamRecord = async (teamName: string) => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_API_BASE_URL}/api/v1/teams/${teamName}/results`,
+  );
+  return response.data;
+};

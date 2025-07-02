@@ -2,16 +2,16 @@ import React from 'react';
 
 type MatchRecordCardProps = {
   date: string;
-  location: string;
-  homeTeam: string;
-  awayTeam: string;
+  stadium: string;
+  homeTeam: React.ReactNode;
+  awayTeam: React.ReactNode;
   homeScore: number;
   awayScore: number;
 };
 
 const MatchRecordCard = ({
   date,
-  location,
+  stadium,
   homeTeam,
   awayTeam,
   homeScore,
@@ -23,7 +23,7 @@ const MatchRecordCard = ({
       <div className="text-sm">{date}</div>
 
       {/* 위치 */}
-      <div className="text-xs">{location}</div>
+      <div className="text-xs">{stadium}</div>
 
       {/* 매치업 */}
       <div className="text-lg font-semibold">

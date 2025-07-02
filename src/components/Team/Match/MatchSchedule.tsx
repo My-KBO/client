@@ -13,11 +13,11 @@ type Match = {
   stadium: string;
 };
 
-type TemaScheduleProps = {
+type TeamScheduleProps = {
   teamName: TeamName;
 };
 
-const MatchSchedule = ({ teamName }: TemaScheduleProps) => {
+const MatchSchedule = ({ teamName }: TeamScheduleProps) => {
   const [schedule, setSchedule] = useState<Match[]>([]); // API 응답 저장용
 
   useEffect(() => {
