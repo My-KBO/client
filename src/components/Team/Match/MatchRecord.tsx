@@ -1,59 +1,8 @@
 import { getTeamRecord } from '../../../services/teamService';
 import CommonButton from '../CommonButton/CommonButton';
 import MatchRecordCard from './MatchRecordCard';
-import { TeamName, teamDisplayNameMap } from '../../../utils/teamNameMap';
+import { TeamName } from '../../../utils/teamNameMap';
 import { useEffect, useState } from 'react';
-
-// const matchRecords = [
-//   {
-//     date: '6월 17일 (화)',
-//     location: '광주',
-//     homeTeam: 'KIA',
-//     awayTeam: 'LG',
-//     homeScore: 3,
-//     awayScore: 1,
-//   },
-//   {
-//     date: '6월 17일 (화)',
-//     location: '광주',
-//     homeTeam: 'KIA',
-//     awayTeam: 'LG',
-//     homeScore: 3,
-//     awayScore: 1,
-//   },
-//   {
-//     date: '6월 17일 (화)',
-//     location: '광주',
-//     homeTeam: 'KIA',
-//     awayTeam: 'LG',
-//     homeScore: 3,
-//     awayScore: 1,
-//   },
-//   {
-//     date: '6월 17일 (화)',
-//     location: '광주',
-//     homeTeam: 'KIA',
-//     awayTeam: 'LG',
-//     homeScore: 3,
-//     awayScore: 1,
-//   },
-//   {
-//     date: '6월 17일 (화)',
-//     location: '광주',
-//     homeTeam: 'KIA',
-//     awayTeam: 'LG',
-//     homeScore: 3,
-//     awayScore: 1,
-//   },
-//   {
-//     date: '6월 17일 (화)',
-//     location: '광주',
-//     homeTeam: 'KIA',
-//     awayTeam: 'LG',
-//     homeScore: 3,
-//     awayScore: 1,
-//   },
-// ];
 
 type Match = {
   date: string;
