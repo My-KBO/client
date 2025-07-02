@@ -3,11 +3,12 @@ import React from 'react';
 export type MatchCardProps = {
   homeTeam: string;
   awayTeam: string;
-  homeScore?: number;
-  awayScore?: number;
+  homeScore?: number | string;
+  awayScore?: number | string;
   time: string;
   stadium: string;
   status: '예정' | '종료' | '취소';
+  weather?: string;
 };
 
 const MatchCard: React.FC<MatchCardProps> = ({
@@ -18,9 +19,17 @@ const MatchCard: React.FC<MatchCardProps> = ({
   time,
   stadium,
   status,
+  weather,
 }) => {
   const isFinished = status === '종료';
   const isCanceled = status === '취소';
+
+  // 점수가 빈 문자열이거나 undefined인 경우 처리
+  const hasScore =
+    homeScore !== '' &&
+    homeScore !== undefined &&
+    awayScore !== '' &&
+    awayScore !== undefined;
 
   return (
     <div
@@ -31,8 +40,11 @@ const MatchCard: React.FC<MatchCardProps> = ({
       <div className="text-[16px] text-gray-900 mb-1">
         {time} | {stadium}
       </div>
+      {weather && (
+        <div className="text-[12px] text-gray-600">날씨: {weather}</div>
+      )}
       <div className="flex items-center justify-center gap-2 mb-2">
-        {isFinished ? (
+        {isFinished && hasScore ? (
           <>
             {/* 홈팀 */}
             <div className="flex flex-col items-center">

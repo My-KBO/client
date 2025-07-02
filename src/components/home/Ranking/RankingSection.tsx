@@ -1,16 +1,32 @@
 import React, { useState } from 'react';
-import teamRankingData from './team-ranking-data';
+import { useQuery } from '@tanstack/react-query';
 import {
-  batterRankingData,
-  pitcherRankingData,
-  PlayerRankingData,
-} from './player-ranking-data';
+  fetchTeamRankings,
+  TeamRanking,
+  fetchTopPlayers,
+  TopPlayerResponse,
+  PlayerRankingItem,
+} from '../../../services/baseballAPI';
 
 const RankingSection = () => {
   const [activeTab, setActiveTab] = useState<'batter' | 'pitcher'>('batter');
 
-  const currentData =
-    activeTab === 'batter' ? batterRankingData : pitcherRankingData;
+  // 팀 순위 데이터 패칭
+  const { data: teamRankingData = [], isLoading } = useQuery({
+    queryKey: ['teamRankings'],
+    queryFn: fetchTeamRankings,
+  });
+
+  // 선수 랭킹 데이터 패칭
+  const { data: topPlayerData, isLoading: isPlayerLoading } = useQuery({
+    queryKey: ['topPlayers'],
+    queryFn: fetchTopPlayers,
+  });
+
+  const currentPlayerData: PlayerRankingItem[] =
+    activeTab === 'batter'
+      ? (topPlayerData?.hitter ?? [])
+      : (topPlayerData?.pitcher ?? []);
 
   return (
     <section className="w-full flex justify-center py-15 px-[170px] py-[60px] bg-white">
@@ -18,36 +34,40 @@ const RankingSection = () => {
         {/* TEAM RANKING */}
         <div className="flex-1 bg-white rounded-lg shadow p-6 flex flex-col items-center">
           <h2 className="text-2xl font-bold mb-4">TEAM RANKING</h2>
-          <table className="w-full text-center border">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="p-1 border">순위</th>
-                <th className="p-1 border">팀</th>
-                <th className="p-1 border">경기</th>
-                <th className="p-1 border">승</th>
-                <th className="p-1 border">패</th>
-                <th className="p-1 border">무</th>
-                <th className="p-1 border">승률</th>
-                <th className="p-1 border">게임차</th>
-                <th className="p-1 border">연속</th>
-              </tr>
-            </thead>
-            <tbody>
-              {teamRankingData.map((team) => (
-                <tr key={team.rank}>
-                  <td className="border p-1">{team.rank}</td>
-                  <td className="border p-1">{team.team}</td>
-                  <td className="border p-1">{team.games}</td>
-                  <td className="border p-1">{team.win}</td>
-                  <td className="border p-1">{team.lose}</td>
-                  <td className="border p-1">{team.draw}</td>
-                  <td className="border p-1">{team.winRate}</td>
-                  <td className="border p-1">{team.diff}</td>
-                  <td className="border p-1">{team.streak}</td>
+          {isLoading ? (
+            <div className="text-gray-400">로딩 중...</div>
+          ) : (
+            <table className="w-full text-center border">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="p-1 border">순위</th>
+                  <th className="p-1 border">팀</th>
+                  <th className="p-1 border">경기</th>
+                  <th className="p-1 border">승</th>
+                  <th className="p-1 border">패</th>
+                  <th className="p-1 border">무</th>
+                  <th className="p-1 border">승률</th>
+                  <th className="p-1 border">게임차</th>
+                  <th className="p-1 border">연속</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {teamRankingData.map((team: TeamRanking) => (
+                  <tr key={team.rank}>
+                    <td className="border p-1">{team.rank}</td>
+                    <td className="border p-1">{team.team}</td>
+                    <td className="border p-1">{team.games}</td>
+                    <td className="border p-1">{team.win}</td>
+                    <td className="border p-1">{team.lose}</td>
+                    <td className="border p-1">{team.draw}</td>
+                    <td className="border p-1">{team.winRate}</td>
+                    <td className="border p-1">{team.gameGap}</td>
+                    <td className="border p-1">{team.streak}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
           <div className="text-gray-400 text-xs mt-2">25.05.26 기준</div>
         </div>
         {/* PLAYER RANKING */}
@@ -76,43 +96,39 @@ const RankingSection = () => {
             </button>
           </div>
           <div className="w-full h-full flex flex-col justify-between">
-            {currentData.map((player: PlayerRankingData, idx: number) => (
-              <React.Fragment key={idx}>
-                <div className="flex items-center py-6 gap-6 ">
-                  {/* 카테고리 */}
-                  <div className="flex-1 text-lg font-semibold text-blue-900 text-left">
-                    {player.category}
-                  </div>
-                  {/* 원형 이미지 */}
-                  {player.image ? (
-                    <img
-                      src={player.image}
-                      alt={player.name}
-                      className="w-14 h-14 rounded-full object-cover flex-shrink-0"
-                    />
-                  ) : (
+            {isPlayerLoading ? (
+              <div className="text-gray-400">로딩 중...</div>
+            ) : (
+              currentPlayerData.map((player, idx) => (
+                <React.Fragment key={idx}>
+                  <div className="flex items-center py-6 gap-6 ">
+                    {/* 카테고리 */}
+                    <div className="flex-1 text-lg font-semibold text-blue-900 text-left">
+                      {player.category}
+                    </div>
+                    {/* 원형 이미지 (API에 없으므로 생략) */}
                     <div className="w-14 h-14 bg-gray-200 rounded-full flex-shrink-0" />
-                  )}
-                  {/* 팀/이름/정보 */}
-                  <div className="flex flex-col flex-1 items-start ">
-                    <div className="flex items-center mb-1">
-                      <span className="text-xs bg-gray-100 text-gray-500 rounded px-2 py-0.5 mr-2">
-                        {player.team}
-                      </span>
-                      <span className="font-bold text-base text-gray-900">
-                        {player.name}
-                      </span>
-                    </div>
-                    <div className="text-xs text-gray-400 ml-1">
-                      {player.info}
+                    {/* 팀/이름/정보 */}
+                    <div className="flex flex-col flex-1 items-start ">
+                      <div className="flex items-center mb-1">
+                        <span className="text-xs bg-gray-100 text-gray-500 rounded px-2 py-0.5 mr-2">
+                          {player.team}
+                        </span>
+                        <span className="font-bold text-base text-gray-900">
+                          {player.name}
+                        </span>
+                      </div>
+                      <div className="text-xs text-gray-400 ml-1">
+                        {player.value}
+                      </div>
                     </div>
                   </div>
-                </div>
-                {idx !== currentData.length - 1 && (
-                  <div className="w-full mx-auto border-b border-gray-200" />
-                )}
-              </React.Fragment>
-            ))}
+                  {idx !== currentPlayerData.length - 1 && (
+                    <div className="w-full mx-auto border-b border-gray-200" />
+                  )}
+                </React.Fragment>
+              ))
+            )}
           </div>
           <div className="text-gray-400 text-xs mt-8 self-end">
             25.05.26 기준
