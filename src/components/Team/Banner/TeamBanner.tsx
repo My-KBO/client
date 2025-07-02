@@ -12,11 +12,11 @@ const TeamBanner = ({ teamName }: TeamBannerProps) => {
   return (
     <div className="w-full">
       {/* 최상단 각 팀별 슬로건 */}
-      {/* <img
+      <img
         src={team.sloganImage}
         alt={`${team.name} Slogan`}
-        className="w-full h-80 object-cover"
-      /> */}
+        className="h-80 w-full object-contain object-center" //object-cover
+      />
       {/* 팀 로고와 이름, 설명, 굿즈샵 및 공식홈 버튼 */}
       <div className="flex justify-between items-center gap-4 ml-40 mr-40 mt-10 mb-10">
         <div className="flex">
