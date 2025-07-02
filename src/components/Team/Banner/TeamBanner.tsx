@@ -1,13 +1,13 @@
 import { TEAM_DATA } from '../../../utils/teamData';
-import { TeamKey } from '../../../utils/teamKeyMap';
+import { TeamName } from '../../../utils/teamNameMap';
 import TeamInfoButton from './TeamInfoButton';
 
 type TeamBannerProps = {
-  teamKey: TeamKey;
+  teamName: TeamName;
 };
 
-const TeamBanner = ({ teamKey }: TeamBannerProps) => {
-  const team = TEAM_DATA[teamKey];
+const TeamBanner = ({ teamName }: TeamBannerProps) => {
+  const team = TEAM_DATA[teamName];
 
   return (
     <div className="w-full">

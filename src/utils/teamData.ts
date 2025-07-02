@@ -1,7 +1,7 @@
-import { TeamKey } from './teamKeyMap';
+import { TeamName } from './teamNameMap';
 
 export const TEAM_DATA: Record<
-  TeamKey,
+  TeamName,
   {
     name: string;
     sloganImage: string;
@@ -9,13 +9,13 @@ export const TEAM_DATA: Record<
     description: string;
   }
 > = {
-  kia: {
+  KIA: {
     name: 'KIA Tigers',
     sloganImage: require('../assets/images/TeamSlogan/kia-tigers-slogan.jpg'),
     logoImage: require('../assets/images/TeamEmblem/kia-tigers-emblem.png'),
     description: '기아 타이거즈는 KBO 리그의 자랑스러운 프로야구 팀입니다.',
   },
-  lg: {
+  LG: {
     name: 'LG Twins',
     sloganImage: require('../assets/images/TeamSlogan/lg-twins-slogan.jpg'),
     logoImage: require('../assets/images/TeamEmblem/lg-twins-emblem.jpg'),

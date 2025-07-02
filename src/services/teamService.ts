@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const getTeamSchedule = async (teamId: string) => {
+export const getTeamSchedule = async (teamName: string) => {
   const response = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}/api/v1/baseball/teams/${teamId}/schedule`,
+    `${process.env.REACT_APP_API_BASE_URL}/api/v1/teams/${teamName}/schedule`,
   );
   return response.data;
 };

@@ -2,7 +2,7 @@ import CommonButton from '../CommonButton/CommonButton';
 import MatchCard from './MatchCard';
 import lgLogo from '../../../assets/images/TeamEmblem/lg-twins-emblem.jpg';
 import kiaLogo from '../../../assets/images/TeamEmblem/kia-tigers-emblem.png';
-import { TeamKey } from '../../../utils/teamKeyMap';
+import { TeamName } from '../../../utils/teamNameMap';
 import { useEffect, useState } from 'react';
 import { getTeamSchedule } from '../../../services/teamService';
 
@@ -93,22 +93,23 @@ const matchList = [
   },
 ];
 
-type TeamBannerProps = {
-  teamKey: TeamKey;
+type TemaScheduleProps = {
+  // teamName: TeamName;
+  teamName: string;
 };
 
-const MatchSchedule = ({ teamKey }: TeamBannerProps) => {
+const MatchSchedule = ({ teamName }: TemaScheduleProps) => {
   const [schedule, setSchedule] = useState<any>(null); // API 응답 저장용
 
   useEffect(() => {
-    getTeamSchedule(teamKey)
+    getTeamSchedule(teamName)
       .then((data) => {
         setSchedule(data); // API 데이터 저장
       })
       .catch((err) => {
         console.error('경기 일정 불러오기 실패:', err);
       });
-  }, [teamKey]);
+  }, [teamName]);
 
   return (
     <div className="grid place-items-center">

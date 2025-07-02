@@ -7,13 +7,13 @@ import TeamPlayer from '../components/Team/Player/TeamPlayer';
 import TeamNews from '../components/common/TeamNews/team-news';
 
 import { useParams } from 'react-router-dom';
-import { TeamKey, teamKeyMap } from '../utils/teamKeyMap';
+import { TeamName, teamKeyMap } from '../utils/teamNameMap';
 
 const TeamDashboardPage = () => {
   const { teamId } = useParams<{ teamId: string }>();
 
   const teamKey =
-    teamId && teamKeyMap[teamId] ? (teamKeyMap[teamId] as TeamKey) : null;
+    teamId && teamKeyMap[teamId] ? (teamKeyMap[teamId] as TeamName) : null;
 
   if (!teamKey) {
     return <div className="text-center">잘못된 팀 주소입니다.</div>;
@@ -21,12 +21,12 @@ const TeamDashboardPage = () => {
 
   return (
     <div>
-      <TeamBanner teamKey={teamKey} />
-      <MatchSchedule teamKey={teamKey} />
+      <TeamBanner teamName={teamKey} />
+      <MatchSchedule teamName={teamKey} />
       <MatchRecord />
       <TeamPlayer />
       <FanComment />
-      <Highlight teamKey={teamKey} />
+      <Highlight teamName={teamKey} />
       <TeamNews />
     </div>
   );
