@@ -96,7 +96,7 @@ const MatchRecord = ({ teamName }: TemaRecordProps) => {
       <div className="text-2xl font-semibold mt-4 mb-4">경기 기록</div>
       <CommonButton variant="outlined">자세히 보기</CommonButton>
       <div className="grid grid-cols-6 gap-4">
-        {parsedRecord.map((record, index) => (
+        {parsedRecord.slice(0, 6).map((record, index) => (
           <MatchRecordCard key={index} {...record} />
         ))}
       </div>
