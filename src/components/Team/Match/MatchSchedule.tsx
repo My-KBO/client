@@ -5,6 +5,7 @@ import { teamEmblemMap } from '../../../utils/teamEmblemMap';
 import { useEffect, useState } from 'react';
 import { getTeamSchedule } from '../../../services/teamService';
 import { useQuery } from '@tanstack/react-query';
+import { teamLinks } from '../../../utils/teamLinks';
 
 type Match = {
   date: string;
@@ -61,10 +62,19 @@ const MatchSchedule = ({ teamName }: TeamScheduleProps) => {
     },
   }));
 
+  const teamLink = teamLinks[teamName];
+
+  if (!teamLink) return null; // 유효하지 않은 팀 -> 렌더링X
+
   return (
     <div className="grid place-items-center">
       <div className="text-2xl font-semibold mt-4 mb-4">팀 경기 일정</div>
-      <CommonButton variant="outlined">경기 전체 일정</CommonButton>
+      <CommonButton
+        variant="outlined"
+        onClick={() => window.open(teamLink.schedule, '_blank')}
+      >
+        경기 전체 일정
+      </CommonButton>
       <div className="grid grid-cols-4 gap-4">
         {parsedSchedule.map((match, index) => (
           <MatchCard key={index} {...match} />

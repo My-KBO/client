@@ -2,8 +2,8 @@ import { getTeamRecord } from '../../../services/teamService';
 import CommonButton from '../CommonButton/CommonButton';
 import MatchRecordCard from './MatchRecordCard';
 import { TeamName } from '../../../utils/teamNameMap';
-import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { teamLinks } from '../../../utils/teamLinks';
 
 type Record = {
   date: string;
@@ -47,10 +47,20 @@ const MatchRecord = ({ teamName }: TemaRecordProps) => {
     awayTeam: match.awayTeam,
     awayScore: match.awayScore,
   }));
+
+  const teamLink = teamLinks[teamName];
+
+  if (!teamLink) return null; // 유효하지 않은 팀 -> 렌더링X
+
   return (
     <div className="grid place-items-center">
       <div className="text-2xl font-semibold mt-4 mb-4">경기 기록</div>
-      <CommonButton variant="outlined">자세히 보기</CommonButton>
+      <CommonButton
+        variant="outlined"
+        onClick={() => window.open(teamLink.record, '_blank')}
+      >
+        자세히 보기
+      </CommonButton>
       <div className="grid grid-cols-6 gap-4">
         {parsedRecord.slice(0, 6).map((record, index) => (
           <MatchRecordCard key={index} {...record} />

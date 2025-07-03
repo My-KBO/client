@@ -3,6 +3,7 @@ import FeaturedPlayerCard from './FeaturedPlayerCard';
 import { TeamName } from '../../../utils/teamNameMap';
 import { useQuery } from '@tanstack/react-query';
 import { getTeamPlayer } from '../../../services/teamService';
+import { teamLinks } from '../../../utils/teamLinks';
 
 type Player = {
   hitter: {
@@ -25,16 +26,15 @@ const TeamPlayer = ({ teamName }: TeamPlayerProps) => {
   const { data, isLoading, isError } = useQuery<Player>({
     queryKey: ['teamPlayer', teamName],
     queryFn: () => getTeamPlayer(teamName),
-    // staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5,
   });
 
-  console.log('📦 data:', data);
-  console.log('📦 hitter:', data?.hitter);
-  console.log('📦 pitcher:', data?.pitcher);
-
-  if (isLoading) return <div>로딩 중...</div>;
   if (isError || !data || !data.hitter || !data.pitcher) {
-    return <div>선수 데이터를 불러오지 못했습니다.</div>;
+    return (
+      <div className="text-center mt-4 text-red-500">
+        선수 데이터를 불러오지 못했습니다.
+      </div>
+    );
   }
 
   const parsedPlayer = [
@@ -54,10 +54,19 @@ const TeamPlayer = ({ teamName }: TeamPlayerProps) => {
     },
   ];
 
+  const teamLink = teamLinks[teamName];
+
+  if (!teamLink) return null; // 유효하지 않은 팀 -> 렌더링X
+
   return (
     <div className="grid place-items-center">
       <div className="text-2xl font-semibold mt-4 mb-4">주간 활약 선수</div>
-      <CommonButton variant="outlined">선수 명단 보기</CommonButton>
+      <CommonButton
+        variant="outlined"
+        onClick={() => window.open(teamLink.player, '_blank')}
+      >
+        선수 명단 보기
+      </CommonButton>
       <div className="grid grid-cols-2 gap-4 max-w-3xl w-full">
         {parsedPlayer.map((record, index) => (
           <FeaturedPlayerCard key={index} {...record} />
