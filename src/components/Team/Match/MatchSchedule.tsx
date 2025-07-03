@@ -4,6 +4,7 @@ import { TeamName, teamDisplayNameMap } from '../../../utils/teamNameMap';
 import { teamEmblemMap } from '../../../utils/teamEmblemMap';
 import { useEffect, useState } from 'react';
 import { getTeamSchedule } from '../../../services/teamService';
+import { useQuery } from '@tanstack/react-query';
 
 type Match = {
   date: string;
@@ -18,17 +19,23 @@ type TeamScheduleProps = {
 };
 
 const MatchSchedule = ({ teamName }: TeamScheduleProps) => {
-  const [schedule, setSchedule] = useState<Match[]>([]); // API 응답 저장용
+  const {
+    data: schedule = [],
+    isLoading,
+    isError,
+  } = useQuery<Match[]>({
+    queryKey: ['teamSchedule', teamName], // 쿼리 식별 키
+    queryFn: () => getTeamSchedule(teamName), // 데이터 가져오기
+    staleTime: 1000 * 60 * 5, // 5분동안 캐시 유지
+  });
 
-  useEffect(() => {
-    getTeamSchedule(teamName)
-      .then((data) => {
-        setSchedule(data); // API 데이터 저장
-      })
-      .catch((err) => {
-        console.error('경기 일정 불러오기 실패:', err);
-      });
-  }, [teamName]);
+  if (isError) {
+    return (
+      <div className="text-center mt-4 text-red-500">
+        경기 일정을 불러오는 데 실패했습니다.
+      </div>
+    );
+  }
 
   const parsedSchedule = schedule.map((match) => ({
     date: match.date,

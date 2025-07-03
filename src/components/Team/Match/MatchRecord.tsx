@@ -3,8 +3,9 @@ import CommonButton from '../CommonButton/CommonButton';
 import MatchRecordCard from './MatchRecordCard';
 import { TeamName } from '../../../utils/teamNameMap';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-type Match = {
+type Record = {
   date: string;
   time: string;
   homeTeam: string;
@@ -19,17 +20,23 @@ type TemaRecordProps = {
 };
 
 const MatchRecord = ({ teamName }: TemaRecordProps) => {
-  const [record, setRecord] = useState<Match[]>([]);
+  const {
+    data: record = [],
+    isLoading,
+    isError,
+  } = useQuery<Record[]>({
+    queryKey: ['teamRecord', teamName],
+    queryFn: () => getTeamRecord(teamName),
+    staleTime: 1000 * 60 * 5,
+  });
 
-  useEffect(() => {
-    getTeamRecord(teamName)
-      .then((data) => {
-        setRecord(data);
-      })
-      .catch((err) => {
-        console.error('경기 기록 불러오기 실패:', err);
-      });
-  }, [teamName]);
+  if (isError) {
+    return (
+      <div className="text-center mt-4 text-red-500">
+        경기 기록을 불러오는 데 실패했습니다.
+      </div>
+    );
+  }
 
   const parsedRecord = record.map((match) => ({
     date: match.date,
