@@ -24,7 +24,7 @@ const TeamDashboardPage = () => {
       <TeamBanner teamName={teamKey} />
       <MatchSchedule teamName={teamKey} />
       <MatchRecord teamName={teamKey} />
-      <TeamPlayer />
+      <TeamPlayer teamName={teamKey} />
       <FanComment />
       <Highlight teamName={teamKey} />
       <TeamNews />
