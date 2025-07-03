@@ -30,7 +30,7 @@ const TeamBanner = ({ teamName }: TeamBannerProps) => {
             <p className="text-gray-600">{team.description}</p>
           </div>
         </div>
-        <TeamInfoButton teamName={team.name} />
+        <TeamInfoButton teamName={team.key} />
       </div>
       <hr className="border-t border-gray-100 my-8" />
     </div>
