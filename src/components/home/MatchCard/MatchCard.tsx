@@ -62,7 +62,7 @@ const MatchCard: React.FC<MatchCardProps> = ({
 
   return (
     <div
-      className={`rounded-lg border w-auto flex flex-col items-center gap-4 py-4 px-0 h-full justify-between ${
+      className={`rounded-lg border w-auto flex flex-col items-center gap-4 py-6 px-0 h-full justify-between ${
         isCanceled ? 'opacity-50' : ''
       } ${isFinished ? 'border-kbo-blue' : 'border-gray-200'} min-w-[220px] max-w-[240px] min-h-[180px] max-h-[320px]'`}
     >
