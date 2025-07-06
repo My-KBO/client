@@ -1,29 +1,31 @@
 import React from 'react';
+import { teamNameMap } from '../../../utils/team-name-map';
 
 export type MatchCardProps = {
   homeTeam: string;
   awayTeam: string;
   homeScore?: number | string;
   awayScore?: number | string;
+  date: string;
   time: string;
   stadium: string;
-  status: '예정' | '종료' | '취소';
+  note: string;
   weather?: string;
 };
+
+const getDisplayTeamName = (team: string) => teamNameMap[team] || team;
 
 const MatchCard: React.FC<MatchCardProps> = ({
   homeTeam,
   awayTeam,
   homeScore,
   awayScore,
+  date,
   time,
   stadium,
-  status,
+  note,
   weather,
 }) => {
-  const isFinished = status === '종료';
-  const isCanceled = status === '취소';
-
   // 점수가 빈 문자열이거나 undefined인 경우 처리
   const hasScore =
     homeScore !== '' &&
@@ -31,40 +33,62 @@ const MatchCard: React.FC<MatchCardProps> = ({
     awayScore !== '' &&
     awayScore !== undefined;
 
+  // 점수 비교를 위한 숫자 변환
+  const homeScoreNum =
+    !homeScore || isNaN(Number(homeScore)) ? 0 : Number(homeScore);
+  const awayScoreNum =
+    !awayScore || isNaN(Number(awayScore)) ? 0 : Number(awayScore);
+
+  let homeScoreClass = 'text-2xl';
+  let awayScoreClass = 'text-2xl';
+  if (hasScore) {
+    if (homeScoreNum > awayScoreNum) {
+      homeScoreClass = 'text-3xl text-kbo-lightblue';
+      awayScoreClass = 'text-2xl';
+    } else if (homeScoreNum < awayScoreNum) {
+      homeScoreClass = 'text-2xl';
+      awayScoreClass = 'text-3xl text-kbo-lightblue';
+    } else {
+      homeScoreClass = 'text-3xl text-kbo-blue';
+      awayScoreClass = 'text-3xl text-kbo-blue';
+    }
+  }
+
+  // 경기 상태 판단
+  const isFinished = note === '-' && hasScore; // 경기 종료: note가 -이고 점수가 있음
+  const isCanceled = note !== '-'; // 경기 취소: note가 -가 아님
+  const isScheduled = note === '-' && !hasScore; // 경기 예정: note가 -이고 점수가 없음
+
   return (
     <div
-      className={`rounded-[8px] border w-auto flex flex-col items-center gap-4 py-4 px-0 h-full justify-between ${
+      className={`rounded-lg border w-auto flex flex-col items-center gap-4 py-4 px-0 h-full justify-between ${
         isCanceled ? 'opacity-50' : ''
-      } ${isFinished ? 'border-kbo-blue' : 'border-gray-200'}`}
+      } ${isFinished ? 'border-kbo-blue' : 'border-gray-200'} min-w-[220px] max-w-[240px] min-h-[180px] max-h-[320px]'`}
     >
-      <div className="text-[16px] text-gray-900 mb-1">
+      <div className="text-sm text-gray-900 mb-1">
         {time} | {stadium}
       </div>
-      {weather && (
-        <div className="text-[12px] text-gray-600">날씨: {weather}</div>
-      )}
-      <div className="flex items-center justify-center gap-2 mb-2">
+      <div className="flex items-center justify-between gap-2 mb-2">
         {isFinished && hasScore ? (
           <>
             {/* 홈팀 */}
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-2">
               <span className="whitespace-pre-line text-center text-kbo-blue font-bold">
-                {homeTeam}
+                {getDisplayTeamName(homeTeam)}
               </span>
-              <span className="font-semibold text-[32px] text-kbo-blue mt-2">
+              <span
+                className={`font-semibold ${homeScoreClass} text-kbo-blue mt-2`}
+              >
                 {homeScore}
               </span>
             </div>
-            <span className="mx-4 text-[24px] font-bold text-kbo-blue">VS</span>
+            <span className="mx-4 font-bold text-kbo-blue">VS</span>
             {/* 원정팀 */}
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-2">
               <span className="whitespace-pre-line text-center text-kbo-blue font-bold">
-                {awayTeam}
+                {getDisplayTeamName(awayTeam)}
               </span>
-              <span
-                className="font-semibold text-[32px]"
-                style={{ color: '#19C3FF' }}
-              >
+              <span className={`font-semibold ${awayScoreClass}`}>
                 {awayScore}
               </span>
             </div>
@@ -72,19 +96,19 @@ const MatchCard: React.FC<MatchCardProps> = ({
         ) : (
           <>
             <span className="whitespace-pre-line text-center font-bold">
-              {homeTeam}
+              {getDisplayTeamName(homeTeam)}
             </span>
             <span className="mx-2">VS</span>
             <span className="whitespace-pre-line text-center font-bold">
-              {awayTeam}
+              {getDisplayTeamName(awayTeam)}
             </span>
           </>
         )}
       </div>
-      <div className="mt-2 font-normal text-[16px]">
-        {status === '예정' && <span className="text-gray-900 ">경기예정</span>}
-        {status === '종료' && <span className="text-kbo-blue">경기종료</span>}
-        {status === '취소' && <span className="text-gray-500">경기취소</span>}
+      <div className="mt-2 font-normal text-base flex flex-col items-center gap-1">
+        {isScheduled && <span className="text-gray-900">경기예정</span>}
+        {isFinished && <span className="text-kbo-blue">경기종료</span>}
+        {isCanceled && <span className="text-gray-500">{note}</span>}
       </div>
     </div>
   );

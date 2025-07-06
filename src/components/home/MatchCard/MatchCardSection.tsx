@@ -14,7 +14,9 @@ const MatchCardSection = () => {
         setLoading(true);
         setError(null);
         const todayGames = await fetchTodayGames();
-        setGames(todayGames);
+        // ID 순번대로 정렬
+        const sortedGames = todayGames.sort((a, b) => a.id - b.id);
+        setGames(sortedGames);
       } catch (err) {
         console.error('오늘의 경기 일정을 불러오는데 실패했습니다:', err);
         setError('경기 일정을 불러오는데 실패했습니다.');
@@ -28,18 +30,16 @@ const MatchCardSection = () => {
 
   // API 데이터를 MatchCard 컴포넌트에 맞는 형태로 변환
   const transformGameData = (game: TodayGame) => {
-    // 점수가 빈 문자열이면 예정 경기로 간주
-    const hasScore = game.homeScore !== '' && game.awayScore !== '';
-    const status: '예정' | '종료' | '취소' = hasScore ? '종료' : '예정';
-
     return {
       homeTeam: game.homeTeam,
       awayTeam: game.awayTeam,
       homeScore: game.homeScore || undefined,
       awayScore: game.awayScore || undefined,
+      date: game.date,
       time: game.time,
       stadium: game.stadium,
-      status,
+      note: game.note,
+      weather: game.weather,
     };
   };
 
