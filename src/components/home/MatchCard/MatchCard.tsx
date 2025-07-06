@@ -1,5 +1,6 @@
 import React from 'react';
 import { teamNameMap } from '../../../utils/team-name-map';
+import { getWeatherEmoji } from '../../../utils/weather-emoji';
 
 export type MatchCardProps = {
   homeTeam: string;
@@ -66,6 +67,7 @@ const MatchCard: React.FC<MatchCardProps> = ({
       } ${isFinished ? 'border-kbo-blue' : 'border-gray-200'} min-w-[220px] max-w-[240px] min-h-[180px] max-h-[320px]'`}
     >
       <div className="text-sm text-gray-900 mb-1">
+        {weather && <span className="mr-1">{getWeatherEmoji(weather)}</span>}|{' '}
         {time} | {stadium}
       </div>
       <div className="flex items-center justify-between gap-2 mb-2">
