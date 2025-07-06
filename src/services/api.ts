@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useAuthStore } from '../store/authStore';
 
 const api = axios.create({
-  baseURL: 'http://3.107.172.216:3456/api/v1',
+  baseURL: 'http://3.107.172.216:3333/api/v1',
   withCredentials: true,
 });
 
@@ -19,7 +19,7 @@ api.interceptors.response.use(
   async (error) => {
     if (error.response?.status === 401) {
       const res = await axios.post(
-        'http://3.107.172.216:3456/api/v1/auth/refresh',
+        'http://3.107.172.216:3333/api/v1/auth/refresh',
         {},
         { withCredentials: true },
       );
