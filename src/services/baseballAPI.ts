@@ -1,19 +1,6 @@
 import api from './api';
 import { tempTodayGames } from './tempDummyData';
 
-// TODO: 백엔드 서버가 준비되면 주석 해제하고 아래 더미 데이터 코드 삭제
-// import {
-//   TeamRanking,
-//   TopPlayerResponse,
-//   PlayerRankingItem,
-//   TodayGame,
-//   tempTeamRankings,
-//   tempTopPlayers,
-//   tempTodayGames,
-// } from './tempDummyData';
-
-// export type { TeamRanking, TopPlayerResponse, PlayerRankingItem, TodayGame };
-
 export interface TeamRanking {
   rank: number;
   team: string;
@@ -76,14 +63,6 @@ export const fetchTopPlayers = async (): Promise<TopPlayerResponse> => {
 };
 
 export const fetchTodayGames = async (): Promise<TodayGame[]> => {
-  // TODO: 더미 데이터 사용 코드 주석 처리
-  // return new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve(tempTodayGames);
-  //   }, 500);
-  // });
-
-  // 실제 백엔드 API 호출
   try {
     console.log('오늘의 경기 API 호출 중...');
     const res = await api.get<TodayGame[]>('/baseball/games/today');
