@@ -1,13 +1,13 @@
-import { TEAM_DATA } from '../../../utils/team-data';
-import { TeamKey } from '../../../utils/team-key-map';
-import TeamInfoButton from './team-info-button';
+import { TEAM_DATA } from '../../../utils/teamData';
+import { TeamName } from '../../../utils/teamNameMap';
+import TeamInfoButton from './TeamInfoButton';
 
 type TeamBannerProps = {
-  teamKey: TeamKey;
+  teamName: TeamName;
 };
 
-const TeamBanner = ({ teamKey }: TeamBannerProps) => {
-  const team = TEAM_DATA[teamKey];
+const TeamBanner = ({ teamName }: TeamBannerProps) => {
+  const team = TEAM_DATA[teamName];
 
   return (
     <div className="w-full">
@@ -15,13 +15,13 @@ const TeamBanner = ({ teamKey }: TeamBannerProps) => {
       <img
         src={team.sloganImage}
         alt={`${team.name} Slogan`}
-        className="w-full h-80 object-cover"
+        className="h-80 w-full object-cover object-center" //object-contain
       />
       {/* 팀 로고와 이름, 설명, 굿즈샵 및 공식홈 버튼 */}
       <div className="flex justify-between items-center gap-4 ml-40 mr-40 mt-10 mb-10">
         <div className="flex">
           <img
-            src={team.logoImage}
+            src={team.emblemImage}
             alt={`${team.name} Logo`}
             className="h-16 mr-10"
           />
@@ -30,7 +30,7 @@ const TeamBanner = ({ teamKey }: TeamBannerProps) => {
             <p className="text-gray-600">{team.description}</p>
           </div>
         </div>
-        <TeamInfoButton teamName={team.name} />
+        <TeamInfoButton teamName={team.key} />
       </div>
       <hr className="border-t border-gray-100 my-8" />
     </div>

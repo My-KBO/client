@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
-import TeamDashboardPage from './pages/team-dashboard-page';
+import TeamDashboardPage from './pages/TeamDashboardPage';
 
 function App() {
   return (

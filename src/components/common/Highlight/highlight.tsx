@@ -1,9 +1,9 @@
-import { TEAM_DATA } from '../../../utils/team-data';
-import { TeamKey } from '../../../utils/team-key-map';
+import { TEAM_DATA } from '../../../utils/teamData';
+import { TeamName } from '../../../utils/teamNameMap';
 import HighlightCard from './highlight-card';
 
 type HighlightProps = {
-  teamKey: TeamKey;
+  teamName: TeamName;
 };
 
 const highlights = [
@@ -34,8 +34,8 @@ const highlights = [
   },
 ];
 
-const Highlight = ({ teamKey }: HighlightProps) => {
-  const team = TEAM_DATA[teamKey];
+const Highlight = ({ teamName }: HighlightProps) => {
+  const team = TEAM_DATA[teamName];
   return (
     <div className="grid place-items-center">
       <div className="text-2xl font-semibold mt-6 mb-4">

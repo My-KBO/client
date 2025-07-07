@@ -1,4 +1,3 @@
-// src/components/team/fan-support-card.tsx
 import React from 'react';
 
 type TFanCommentCardProps = {

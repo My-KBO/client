@@ -1,6 +1,5 @@
-import CommonButton from '../CommonButton/common-button';
-import { teamLinks } from '../../../utils/team-links';
-import { TeamKey } from '../../../utils/team-key-map';
+import CommonButton from '../CommonButton/CommonButton';
+import { teamLinks } from '../../../utils/teamLinks';
 
 interface TeamInfoButtonProps {
   teamName: string;
@@ -8,8 +7,6 @@ interface TeamInfoButtonProps {
 
 const TeamInfoButton = ({ teamName }: TeamInfoButtonProps) => {
   const teamLink = teamLinks[teamName];
-
-  console.log('Team link : ', teamLink);
 
   if (!teamLink) return null; // 유효하지 않은 팀 -> 렌더링X
 
