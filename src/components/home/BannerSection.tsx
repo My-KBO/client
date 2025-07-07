@@ -19,12 +19,6 @@ const Banner: React.FC = () => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 drop-shadow-lg px-4">
           MY KBO에 오신 것을 환영합니다
         </h1>
-        <Button
-          variant="primary-filled"
-          className="px-8 py-3 md:px-10 md:py-4 text-base md:text-lg font-medium rounded-full transition-colors"
-        >
-          로그인
-        </Button>
       </div>
     </div>
   );
