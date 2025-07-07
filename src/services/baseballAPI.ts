@@ -1,5 +1,4 @@
 import api from './api';
-import { tempTodayGames } from './tempDummyData';
 
 export interface TeamRanking {
   rank: number;
