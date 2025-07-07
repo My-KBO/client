@@ -73,7 +73,7 @@ const RankingSection = () => {
                 </thead>
                 <tbody>
                   {teamRankingData.map((team: TeamRanking) => (
-                    <tr key={team.rank}>
+                    <tr key={`${team.rank}-${team.team}`}>
                       <td className="border p-1">{team.rank}</td>
                       <td className="border p-1">{team.team}</td>
                       <td className="border p-1">{team.games}</td>
@@ -89,8 +89,8 @@ const RankingSection = () => {
               </table>
             </div>
           )}
-          <div className="text-gray-400 text-xs mt-2 self-">
-            {todayGames.length > 0
+          <div className="text-gray-400 text-xs mt-2 self-center">
+            {todayGames.length > 0 && todayGames[0]
               ? `${todayGames[0].date} 기준`
               : '기준일 없음'}
           </div>
@@ -163,7 +163,7 @@ const RankingSection = () => {
             )}
           </div>
           <div className="text-gray-400 text-xs mt-8 self-center">
-            {todayGames.length > 0
+            {todayGames.length > 0 && todayGames[0]
               ? `${todayGames[0].date} 기준`
               : '기준일 없음'}
           </div>
