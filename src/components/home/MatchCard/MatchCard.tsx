@@ -1,5 +1,5 @@
 import React from 'react';
-import { teamNameMap } from '../../../utils/team-name-map';
+import { teamNameMap } from '../../../utils/team/team-name-map';
 import { getWeatherEmoji } from '../../../utils/weather-emoji';
 
 export type MatchCardProps = {

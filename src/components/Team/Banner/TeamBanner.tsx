@@ -1,5 +1,5 @@
-import { TEAM_DATA } from '../../../utils/teamData';
-import { TeamName } from '../../../utils/teamNameMap';
+import { TEAM_DATA } from '../../../utils/team/team-data';
+import { TeamName } from '../../../utils/team/team-name-map';
 import TeamInfoButton from './TeamInfoButton';
 
 type TeamBannerProps = {
