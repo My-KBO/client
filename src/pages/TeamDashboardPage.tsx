@@ -1,6 +1,6 @@
 import TeamBanner from '../components/Team/Banner/TeamBanner';
 import FanComment from '../components/Team/Comment/FanComment';
-import Highlight from '../components/common/Highlight/Highlight';
+import Highlight from '../components/common/Highlight/TeamHighlight';
 import MatchRecord from '../components/Team/Match/MatchRecord';
 import MatchSchedule from '../components/Team/Match/MatchSchedule';
 import TeamPlayer from '../components/Team/Player/TeamPlayer';
