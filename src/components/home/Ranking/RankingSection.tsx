@@ -6,6 +6,7 @@ import {
   fetchTopPlayers,
   TopPlayerResponse,
   PlayerRankingItem,
+  fetchTodayGames,
 } from '../../../services/baseballAPI';
 
 const RankingSection = () => {
@@ -19,6 +20,12 @@ const RankingSection = () => {
   } = useQuery({
     queryKey: ['teamRankings'],
     queryFn: fetchTeamRankings,
+  });
+
+  // 오늘 경기 일정 데이터 패칭
+  const { data: todayGames = [] } = useQuery({
+    queryKey: ['todayGames'],
+    queryFn: fetchTodayGames,
   });
 
   // 선수 랭킹 데이터 패칭
@@ -82,7 +89,11 @@ const RankingSection = () => {
               </table>
             </div>
           )}
-          <div className="text-gray-400 text-xs mt-2 self-">25.05.26 기준</div>
+          <div className="text-gray-400 text-xs mt-2 self-">
+            {todayGames.length > 0
+              ? `${todayGames[0].date} 기준`
+              : '기준일 없음'}
+          </div>
         </div>
         {/* PLAYER RANKING */}
         <div className="flex-1 bg-white rounded-lg p-6 flex flex-col items-center justify-between min-w-[400px] max-w-[600px] min-h-[500px] max-h-[700px]">
@@ -151,7 +162,11 @@ const RankingSection = () => {
               ))
             )}
           </div>
-          <div className="text-gray-400 text-xs mt-8 self-center">기준</div>
+          <div className="text-gray-400 text-xs mt-8 self-center">
+            {todayGames.length > 0
+              ? `${todayGames[0].date} 기준`
+              : '기준일 없음'}
+          </div>
         </div>
       </div>
     </section>
