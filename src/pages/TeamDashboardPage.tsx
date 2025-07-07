@@ -4,7 +4,7 @@ import Highlight from '../components/common/Highlight/Highlight';
 import MatchRecord from '../components/Team/Match/MatchRecord';
 import MatchSchedule from '../components/Team/Match/MatchSchedule';
 import TeamPlayer from '../components/Team/Player/TeamPlayer';
-import TeamNews from '../components/common/TeamNews/TeamNews';
+import TeamNews from '../components/common/News/TeamNews';
 
 import { useParams } from 'react-router-dom';
 import { TeamName, teamKeyMap } from '../utils/team/team-name-map';

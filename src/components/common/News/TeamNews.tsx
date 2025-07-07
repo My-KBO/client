@@ -1,4 +1,4 @@
-import TeamNewsCard from './TeamNewsCard';
+import TeamNewsCard from './NewsCard';
 
 const news = [
   {
