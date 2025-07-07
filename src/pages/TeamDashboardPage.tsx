@@ -8,9 +8,14 @@ import TeamNews from '../components/common/News/TeamNews';
 
 import { useParams } from 'react-router-dom';
 import { TeamName, teamKeyMap } from '../utils/team/team-name-map';
+import { useEffect } from 'react';
 
 const TeamDashboardPage = () => {
   const { teamId } = useParams<{ teamId: string }>();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const teamKey =
     teamId && teamKeyMap[teamId] ? (teamKeyMap[teamId] as TeamName) : null;
