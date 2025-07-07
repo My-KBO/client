@@ -37,8 +37,8 @@ const RankingSection = () => {
       : (topPlayerData?.pitcher ?? []);
 
   return (
-    <section className="w-full flex justify-center py-15 px-[170px] py-[60px] bg-white">
-      <div className="w-4/5 flex flex-col md:flex-row gap-40">
+    <section className="w-full flex justify-center py-[60px] bg-white">
+      <div className="w-full max-w-7xl px-8 flex flex-col md:flex-row gap-8 md:gap-12">
         {/* TEAM RANKING */}
         <div className="flex-1 bg-white rounded-lg p-6 flex flex-col justify-between items-center min-w-[400px] max-w-[600px] min-h-[500px] max-h-[700px]">
           <h2 className="text-2xl font-bold mb-4">TEAM RANKING</h2>
