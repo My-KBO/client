@@ -1,6 +1,6 @@
 import { TEAM_DATA } from '../../../utils/team-data';
 import { TeamName } from '../../../utils/team-name-map';
-import HighlightCard from './highlight-card';
+import HighlightCard from './HighlightCard';
 
 type HighlightProps = {
   teamName: TeamName;

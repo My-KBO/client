@@ -1,10 +1,10 @@
 import TeamBanner from '../components/Team/Banner/TeamBanner';
 import FanComment from '../components/Team/Comment/FanComment';
-import Highlight from '../components/common/Highlight/highlight';
+import Highlight from '../components/common/Highlight/Highlight';
 import MatchRecord from '../components/Team/Match/MatchRecord';
 import MatchSchedule from '../components/Team/Match/MatchSchedule';
 import TeamPlayer from '../components/Team/Player/TeamPlayer';
-import TeamNews from '../components/common/TeamNews/team-news';
+import TeamNews from '../components/common/TeamNews/TeamNews';
 
 import { useParams } from 'react-router-dom';
 import { TeamName, teamKeyMap } from '../utils/team-name-map';
