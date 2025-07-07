@@ -1,9 +1,9 @@
 import CommonButton from '../CommonButton/CommonButton';
 import FeaturedPlayerCard from './FeaturedPlayerCard';
-import { TeamName } from '../../../utils/teamNameMap';
+import { TeamName } from '../../../utils/team-name-map';
 import { useQuery } from '@tanstack/react-query';
 import { getTeamPlayer } from '../../../services/teamService';
-import { teamLinks } from '../../../utils/teamLinks';
+import { teamLinks } from '../../../utils/team-links';
 
 type Player = {
   hitter: {

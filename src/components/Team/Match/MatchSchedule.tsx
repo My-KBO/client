@@ -1,11 +1,11 @@
 import CommonButton from '../CommonButton/CommonButton';
 import MatchCard from './MatchCard';
-import { TeamName, teamDisplayNameMap } from '../../../utils/teamNameMap';
-import { teamEmblemMap } from '../../../utils/teamEmblemMap';
+import { TeamName, teamDisplayNameMap } from '../../../utils/team-name-map';
+import { teamEmblemMap } from '../../../utils/team-emblem-map';
 import { useEffect, useState } from 'react';
 import { getTeamSchedule } from '../../../services/teamService';
 import { useQuery } from '@tanstack/react-query';
-import { teamLinks } from '../../../utils/teamLinks';
+import { teamLinks } from '../../../utils/team-links';
 
 type Match = {
   date: string;

@@ -9,7 +9,7 @@ import ncEmblem from '../assets/images/TeamEmblem/nc-dinos-emblem.png';
 import ktEmblem from '../assets/images/TeamEmblem/kt-wiz-emblem.jpg';
 import kiwoomEmblem from '../assets/images/TeamEmblem/kiwoom-heroes-emblem.png';
 
-import { TeamName } from './teamNameMap';
+import { TeamName } from './team-name-map';
 
 export const teamEmblemMap: Record<TeamName, string> = {
   KIA: kiaEmblem,

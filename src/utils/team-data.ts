@@ -1,4 +1,4 @@
-import { TeamName } from './teamNameMap';
+import { TeamName } from './team-name-map';
 
 export const TEAM_DATA: Record<
   TeamName,

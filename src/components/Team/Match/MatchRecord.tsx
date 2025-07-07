@@ -1,9 +1,9 @@
 import { getTeamRecord } from '../../../services/teamService';
 import CommonButton from '../CommonButton/CommonButton';
 import MatchRecordCard from './MatchRecordCard';
-import { TeamName } from '../../../utils/teamNameMap';
+import { TeamName } from '../../../utils/team-name-map';
 import { useQuery } from '@tanstack/react-query';
-import { teamLinks } from '../../../utils/teamLinks';
+import { teamLinks } from '../../../utils/team-links';
 
 type Record = {
   date: string;
