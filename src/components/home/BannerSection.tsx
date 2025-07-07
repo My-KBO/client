@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from '../common/Button';
 
 const Banner: React.FC = () => {
   return (

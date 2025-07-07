@@ -7,7 +7,7 @@ import TeamPlayer from '../components/Team/Player/TeamPlayer';
 import TeamNews from '../components/common/TeamNews/TeamNews';
 
 import { useParams } from 'react-router-dom';
-import { TeamName, teamKeyMap } from '../utils/team-name-map';
+import { TeamName, teamKeyMap } from '../utils/team/team-name-map';
 
 const TeamDashboardPage = () => {
   const { teamId } = useParams<{ teamId: string }>();
