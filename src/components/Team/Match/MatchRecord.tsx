@@ -15,11 +15,11 @@ type Record = {
   stadium: string;
 };
 
-type TemaRecordProps = {
+type TeamRecordProps = {
   teamName: TeamName;
 };
 
-const MatchRecord = ({ teamName }: TemaRecordProps) => {
+const MatchRecord = ({ teamName }: TeamRecordProps) => {
   const {
     data: record = [],
     isLoading,
