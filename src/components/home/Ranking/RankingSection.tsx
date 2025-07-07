@@ -125,8 +125,7 @@ const RankingSection = () => {
                       {player.category}
                     </div>
                     <div className="flex items-center gap-6">
-                      {/* 원형 이미지 (API에 없으므로 생략) */}
-                      <div className="w-14 h-14 bg-gray-200 rounded-full flex-shrink-0" />
+                      {/*<div className="w-14 h-14 bg-gray-200 rounded-full flex-shrink-0" />*/}
                       {/* 팀/이름/정보 */}
                       <div className="flex flex-col flex-1 items-start ">
                         <div className="flex items-center mb-1">
@@ -152,9 +151,7 @@ const RankingSection = () => {
               ))
             )}
           </div>
-          <div className="text-gray-400 text-xs mt-8 self-center">
-            25.05.26 기준
-          </div>
+          <div className="text-gray-400 text-xs mt-8 self-center">기준</div>
         </div>
       </div>
     </section>
