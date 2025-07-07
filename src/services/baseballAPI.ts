@@ -1,4 +1,4 @@
-import api from './api';
+import axios from 'axios';
 
 export interface TeamRanking {
   rank: number;
@@ -38,37 +38,22 @@ export interface TodayGame {
 }
 
 export const fetchTeamRankings = async (): Promise<TeamRanking[]> => {
-  try {
-    console.log('팀 순위 API 호출 중...');
-    const res = await api.get<TeamRanking[]>('/baseball/rankings');
-    console.log('팀 순위 API 응답:', res.data);
-    return res.data;
-  } catch (error) {
-    console.error('팀 순위 API 호출 실패:', error);
-    throw error;
-  }
+  const response = await axios.get(
+    `${process.env.REACT_APP_API_BASE_URL}/api/v1/baseball/rankings`,
+  );
+  return response.data;
 };
 
 export const fetchTopPlayers = async (): Promise<TopPlayerResponse> => {
-  try {
-    console.log('선수 랭킹 API 호출 중...');
-    const res = await api.get<TopPlayerResponse>('/baseball/topplayer');
-    console.log('선수 랭킹 API 응답:', res.data);
-    return res.data;
-  } catch (error) {
-    console.error('선수 랭킹 API 호출 실패:', error);
-    throw error;
-  }
+  const response = await axios.get(
+    `${process.env.REACT_APP_API_BASE_URL}/api/v1/baseball/topplayer`,
+  );
+  return response.data;
 };
 
 export const fetchTodayGames = async (): Promise<TodayGame[]> => {
-  try {
-    console.log('오늘의 경기 API 호출 중...');
-    const res = await api.get<TodayGame[]>('/baseball/games/today');
-    console.log('오늘의 경기 API 응답:', res.data);
-    return res.data;
-  } catch (error) {
-    console.error('오늘의 경기 API 호출 실패:', error);
-    throw error;
-  }
+  const response = await axios.get(
+    `${process.env.REACT_APP_API_BASE_URL}/api/v1/baseball/games/today`,
+  );
+  return response.data;
 };
