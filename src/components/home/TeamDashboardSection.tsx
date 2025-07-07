@@ -1,19 +1,6 @@
 import { TEAM_DATA } from '../../utils/team/team-data';
 import { useNavigate } from 'react-router-dom';
-
-// 한글 key를 영문 url용으로 매핑
-const teamKeyToUrl: Record<string, string> = {
-  KIA: 'kiatigers',
-  LG: 'lgtwins',
-  삼성: 'samsunglions',
-  두산: 'doosanbears',
-  KT: 'ktwiz',
-  SSG: 'ssglanders',
-  롯데: 'lottegiants',
-  한화: 'hanwhaeagles',
-  NC: 'ncdinos',
-  키움: 'kiwoomheroes',
-};
+import { teamNameToKey, TeamName } from '../../utils/team/team-name-map';
 
 const TeamDashboardSection = () => {
   const navigate = useNavigate();
@@ -29,7 +16,9 @@ const TeamDashboardSection = () => {
               src={team.emblemImage}
               alt={team.name}
               className="w-auto h-16 cursor-pointer hover:scale-105 transition"
-              onClick={() => navigate(`/baseballs/teams/${teamKeyToUrl[key]}`)}
+              onClick={() =>
+                navigate(`/baseballs/teams/${teamNameToKey[key as TeamName]}`)
+              }
             />
             <span className="text-sm">{team.name}</span>
           </div>

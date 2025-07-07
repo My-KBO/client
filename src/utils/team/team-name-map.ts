@@ -23,6 +23,19 @@ export const teamKeyMap: Record<string, TeamName> = {
   kiwoomheroes: '키움',
 };
 
+export const teamNameToKey: Record<TeamName, string> = {
+  KIA: 'kiatigers',
+  LG: 'lgtwins',
+  삼성: 'samsunglions',
+  두산: 'doosanbears',
+  KT: 'ktwiz',
+  SSG: 'ssglanders',
+  롯데: 'lottegiants',
+  한화: 'hanwhaeagles',
+  NC: 'ncdinos',
+  키움: 'kiwoomheroes',
+};
+
 export const teamDisplayNameMap: Record<TeamName, string> = {
   KIA: '타이거즈',
   LG: '트윈스',
