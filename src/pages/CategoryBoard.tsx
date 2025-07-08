@@ -67,14 +67,7 @@ const CategoryPage = () => {
         <h2 className="text-2xl font-semibold mb-2">KBO 통합 팬 커뮤니티</h2>
         <p className="text-sm">함께 응원하고 소통하는 팬들의 공간입니다.</p>
         <div className="flex gap-4 mt-4">
-        <button
-            className="px-6 py-2 bg-white text-[#002561] rounded"
-            onClick={() => navigate('/login')}> 로그인
-          </button>
-          <button
-            className="px-6 py-2 bg-[#0094FF] text-white rounded"
-            onClick={() => navigate('/signup')}> 가입하기
-          </button>
+        
         </div>
       </section>
         
