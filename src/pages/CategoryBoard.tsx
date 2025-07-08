@@ -41,12 +41,12 @@ const CategoryPage = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const category = slugToCategoryMap[slug ?? 'all'];
+      const category = slugToCategoryMap[slug ?? ''];
 
       try {
         const res = await api.get('/posts', {
           params: {
-            category,
+            ...(category !== 'GENERAL' ? { category } : {}),
             page: 1,
             limit: 20
           }
