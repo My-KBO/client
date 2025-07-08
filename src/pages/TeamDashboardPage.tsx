@@ -32,7 +32,7 @@ const TeamDashboardPage = () => {
       <TeamPlayer teamName={teamKey} />
       <FanComment />
       <Highlight teamName={teamKey} />
-      <TeamNews />
+      <TeamNews teamName={teamKey} />
     </div>
   );
 };

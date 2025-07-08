@@ -29,11 +29,11 @@ const HomeTeamNews = () => {
   return (
     <div className="grid place-items-center">
       <div className="text-2xl font-semibold mt-4 mb-4">최신 뉴스</div>
-      <div className="grid grid-cols-3 gap-4">
+      {/* <div className="grid grid-cols-3 gap-4">
         {homeNews.map((news, index) => (
           <TeamNewsCard key={index} {...news} />
         ))}
-      </div>
+      </div> */}
       <hr className="border-t border-gray-100 my-8" />
     </div>
   );

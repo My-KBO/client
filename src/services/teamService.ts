@@ -17,3 +17,6 @@ export const getTeamRecord = (teamName: string) =>
 
 export const getTeamPlayer = (teamName: string) =>
   fetchTeamData(teamName, 'topplayers');
+
+export const getTeamNews = (teamName: string) =>
+  fetchTeamData(teamName, 'news');
