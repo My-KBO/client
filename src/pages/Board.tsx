@@ -30,7 +30,7 @@ const Board = () => {
       try {
         const res = await api.get('/posts', {
           params: {
-            category: 'GENERAL',
+            // category: 'GENERAL',
             //search: '',
             page: 1,
             limit: 10

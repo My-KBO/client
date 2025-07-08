@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from './Sidetab';
-import PasswordChange from './Password-Change';
+import PasswordChange from './PasswordChange';
 // import NicknameChange from './NicknameChange'; // 다른 탭 있을 시
 
 type Tab = 'password' | 'nickname' | 'team' | 'logout'; // 추가 가능
@@ -33,7 +33,7 @@ const MyPage = () => {
           </div> */}
         </div>
       </section>
-
+이
       {/* 본문 */}
       <div className="flex w-full max-w-[1440px] mt-10 px-10 gap-6">
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
