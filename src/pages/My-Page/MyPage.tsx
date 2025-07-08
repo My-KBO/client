@@ -1,46 +1,82 @@
 import React, { useState } from 'react';
-import Sidebar from './Sidetab';
-import PasswordChange from './PasswordChange';
-// import NicknameChange from './NicknameChange'; // 다른 탭 있을 시
+import { useNavigate } from 'react-router-dom';
+import { useUserStore } from '../../stores/store';
+import api from '../../services/axios';
 
-type Tab = 'password' | 'nickname' | 'team' | 'logout'; // 추가 가능
+import Password from './PasswordChange';
+import Nickname from './NicknameChange';
+import Team from './TeamChange';
+
+type Tab = 'password' | 'nickname' | 'team';
 
 const MyPage = () => {
-  const [activeTab, setActiveTab] = useState<Tab>('password');
+  const [activeTab, setActiveTab] = useState<Tab>('nickname');
+  const navigate = useNavigate();
+  const setUser = useUserStore((state) => state.setUser);
+  const setAccessToken = useUserStore((state) => state.setAccessToken);
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'password':
-        return <PasswordChange />;
-      // case 'nickname':
-      //   return <NicknameChange />;
-      default:
-        return null;
+  const handleLogout = async () => {
+    try {
+      await api.post('/auth/logout');
+      setUser(null);
+      setAccessToken(null);
+      navigate('/login');
+    } catch (error) {
+      console.error('로그아웃 실패:', error);
     }
   };
 
+  const tabComponents: Record<Tab, () => React.ReactNode> = {
+    password: () => <Password />,
+    nickname: () => <Nickname />,
+    team: () => <Team />,
+  };
+
+  const ActiveComponent = tabComponents[activeTab];
+
   return (
     <div className="w-full h-full bg-white flex flex-col items-center">
-
-      {/* 상단 섹션 */}
       <section className="w-full bg-[#002561] py-10 text-white flex justify-center items-center gap-10">
         <div className="w-[100px] h-[100px] rounded-full bg-gray-300" />
         <div>
           <h2 className="text-2xl font-bold mb-2">내 정보 관리</h2>
-          {/* <div className="flex gap-2">
-            <span className="text-sm bg-white/50 text-black px-2 py-1 rounded">회원</span>
-            <p className="text-sm">비밀번호를 변경할 수 있어요.</p>
-          </div> */}
         </div>
       </section>
-이
-      {/* 본문 */}
+
+      {/* 사이드 바 */}
       <div className="flex w-full max-w-[1440px] mt-10 px-10 gap-6">
-        <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-        <main className="flex-1">{renderContent()}</main>
+        <aside className="w-[240px] flex flex-col gap-2">
+          <div className="text-2xl font-bold text-center py-3">마이페이지</div>
+          <div className={tabClass('nickname')} onClick={() => setActiveTab('nickname')}>
+            닉네임 변경
+          </div>
+          <div className={tabClass('password')} onClick={() => setActiveTab('password')}>
+            비밀번호 변경
+          </div>
+          <div className={tabClass('team')} onClick={() => setActiveTab('team')}>
+            좋아하는 팀 변경
+          </div>
+          <div
+            className="text-center py-3 text-lg cursor-pointer text-gray-600"
+            onClick={handleLogout}
+          > 로그아웃
+          </div>
+        </aside>
+
+        {/* 탭별 내용 실행 */}
+        <main className="flex-1">
+          {ActiveComponent ()}
+        </main>
       </div>
     </div>
   );
+
+  function tabClass(tab: Tab) {
+    return `w-full text-center py-3 text-lg cursor-pointer ${
+      activeTab === tab ? 'font-semibold text-[#002561]' : 'text-gray-600'
+    }`;
+  }
 };
 
 export default MyPage;
+
