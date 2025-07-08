@@ -20,3 +20,6 @@ export const getTeamPlayer = (teamName: string) =>
 
 export const getTeamNews = (teamName: string) =>
   fetchTeamData(teamName, 'news');
+
+export const getTeamHighlight = (teamName: string) =>
+  fetchTeamData(teamName, 'highlight');

@@ -32,11 +32,11 @@ const HomeHighlight = () => {
   return (
     <div className="grid place-items-center">
       <div className="text-2xl font-semibold mt-6 mb-4">오늘의 하이라이트</div>
-      <div className="grid grid-cols-5 gap-4">
+      {/* <div className="grid grid-cols-5 gap-4">
         {homeHighlights.map((highlight, index) => (
           <HighlightCard key={index} {...highlight} />
         ))}
-      </div>
+      </div> */}
       <hr className="border-t border-gray-100 my-8" />
     </div>
   );
