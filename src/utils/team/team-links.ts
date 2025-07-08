@@ -1,5 +1,7 @@
+import { TeamName } from './team-name-map';
+
 export const teamLinks: Record<
-  string,
+  TeamName,
   {
     official: string;
     shop: string;
