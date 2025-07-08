@@ -3,30 +3,6 @@ import { TeamName } from '../../../utils/team/team-name-map';
 import TeamNewsCard from './NewsCard';
 import { getTeamNews } from '../../../services/teamService';
 
-// const news = [
-//   {
-//     title: '대접전 속 기아의 기적의 역전극!',
-//     summary: '김도영 선수가 역전 홈런을 쳤습니다. 정말 최고의 선수!',
-//     publisher: '기아신문',
-//     author: '홍길동',
-//     date: '2025.06.17',
-//   },
-//   {
-//     title: '대접전 속 기아의 기적의 역전극!',
-//     summary: '김도영 선수가 역전 홈런을 쳤습니다. 정말 최고의 선수!',
-//     publisher: '기아신문',
-//     author: '홍길동',
-//     date: '2025.06.17',
-//   },
-//   {
-//     title: '대접전 속 기아의 기적의 역전극!',
-//     summary: '김도영 선수가 역전 홈런을 쳤습니다. 정말 최고의 선수!',
-//     publisher: '기아신문',
-//     author: '홍길동',
-//     date: '2025.06.17',
-//   },
-// ];
-
 type News = {
   title: string;
   summary: string;
