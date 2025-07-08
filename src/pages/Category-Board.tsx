@@ -3,19 +3,19 @@ import React, { useEffect, useState } from 'react';
 import api from '../services/axios';
 
 const slugToCategoryMap: Record<string, string> = {
-  all: 'GENERAL',
-  free: 'FREE',
-  hot: 'HOT',
-  hanwha: 'HANHWA',
-  samsung: 'SAMSUNG',
-  doosan: 'DOOSAN',
-  lg: 'LG',
-  lotte: 'LOTTE',
-  nc: 'NC',
-  kt: 'KT',
-  ssg: 'SSG',
-  kiwoom: 'KIWOOM',
-  kia: 'KIA'
+  GENERAL: 'GENERAL',
+  FREE: 'FREE',
+  HOT: 'HOT',
+  HANHWA: 'HANHWA',
+  SAMSUNG: 'SAMSUNG',
+  DOOSAN: 'DOOSAN',
+  LG: 'LG',
+  LOTTE: 'LOTTE',
+  NC: 'NC',
+  KT: 'KT',
+  SSG: 'SSG',
+  KIWOOM: 'KIWOOM',
+  KIA: 'KIA'
 };
 
 const teamNameMap: Record<string, string> = {
