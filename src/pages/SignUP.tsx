@@ -25,7 +25,7 @@ const signUp = () => {
       }
     
       if (!password || !passwordRegex.test(password)) {
-        alert('비밀번호는 8자 이상이며, 영문, 숫자, 특수문자를 포함해야 합니다.');
+        alert('비밀번호는 6자 이상이며, 영문, 숫자, 특수문자를 포함해야 합니다.');
         return false;
       }
     
