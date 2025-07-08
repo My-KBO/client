@@ -1,5 +1,7 @@
+
+import axios from 'axios';
 import{ ChangeEvent, FormEvent } from 'react';
-import{ useFormStore } from './store';
+import{ useFormStore } from '../stores/store';
 
 
 const signUp = () => {
@@ -10,14 +12,66 @@ const signUp = () => {
         setForm(name, value);
     };
 
-    const handleSubmit = (e: FormEvent) => {
+    const validateForm = () => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    
+      if (!email || !emailRegex.test(email)) {
+        alert('유효한 이메일을 입력해주세요.');
+        return false;
+      }
+    
+      if (!password || !passwordRegex.test(password)) {
+        alert('비밀번호는 8자 이상이며, 영문, 숫자, 특수문자를 포함해야 합니다.');
+        return false;
+      }
+    
+      if (password !== confirmPassword) {
+        alert('비밀번호가 일치하지 않습니다.');
+        return false;
+      }
+    
+      if (!username || username.length < 2) {
+        alert('닉네임은 2자 이상이어야 합니다.');
+        return false;
+      }
+    
+      if (!team) {
+        alert('선호 팀을 선택해주세요.');
+        return false;
+      }
+    
+      return true;
+    };    
+
+    const handleSubmit = async(e: FormEvent) => {
         e.preventDefault();
-        if(password !== confirmPassword) {
-            alert('비밀번호가 일치하지 않습니다 -!');
-            return;
+        if(!validateForm()) return;
+
+        const requestData = {
+          email,
+          password,
+          nickname: username,
+          favoriteTeam: team,
+        };
+    
+        try {
+          const response = await axios.post(
+            'http://3.107.172.216:3333/api/v1/auth/signup',
+            requestData,
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+          console.log('회원가입 성공:', response.data);
+          alert('회원가입이 완료되었습니다!');
+        } catch (error: any) {
+          console.error('회원가입 실패:', error.response?.data || error.message);
+          alert(`회원가입 실패: ${error.response?.data?.message || '서버 오류'}`);
         }
-        console.log('회원가입 정보: ', { email, password, username, team });
-    }
+      };
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-white px-4">
