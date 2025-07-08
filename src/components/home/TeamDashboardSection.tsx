@@ -17,7 +17,7 @@ const TeamDashboardSection = () => {
               alt={team.name}
               className="w-auto h-16 cursor-pointer hover:scale-105 transition"
               onClick={() =>
-                navigate(`/baseballs/teams/${teamNameToKey[key as TeamName]}`)
+                navigate(`/teams/${teamNameToKey[key as TeamName]}`)
               }
             />
             <span className="text-sm">{team.name}</span>
