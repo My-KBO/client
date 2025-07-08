@@ -57,3 +57,10 @@ export const fetchTodayGames = async (): Promise<TodayGame[]> => {
   );
   return response.data;
 };
+
+export const fetchHomeNews = async () => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_API_BASE_URL}/api/v1/baseball/news`,
+  );
+  return response.data;
+};

@@ -1,6 +1,6 @@
 import React from 'react';
 
-type TeamNewsCardProps = {
+type NewsCardProps = {
   title: string;
   summary: string;
   date: string;
@@ -8,13 +8,7 @@ type TeamNewsCardProps = {
   thumbnail: string;
 };
 
-const TeamNewsCard = ({
-  title,
-  summary,
-  date,
-  url,
-  thumbnail,
-}: TeamNewsCardProps) => {
+const NewsCard = ({ title, summary, date, url, thumbnail }: NewsCardProps) => {
   return (
     <a
       href={url}
@@ -43,4 +37,4 @@ const TeamNewsCard = ({
   );
 };
 
-export default TeamNewsCard;
+export default NewsCard;

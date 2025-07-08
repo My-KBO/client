@@ -45,7 +45,7 @@ const TeamNews = ({ teamName }: TeamNewsProps) => {
   return (
     <div className="grid place-items-center">
       <div className="text-2xl font-semibold mt-4 mb-4">최근 뉴스</div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         {parsedNews.slice(0, 4).map((news, index) => (
           <TeamNewsCard key={index} {...news} />
         ))}
