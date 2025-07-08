@@ -1,12 +1,13 @@
 import CommonButton from '../CommonButton/CommonButton';
 import { teamLinks } from '../../../utils/team/team-links';
+import { TeamName } from '../../../utils/team/team-name-map';
 
 interface TeamInfoButtonProps {
   teamName: string;
 }
 
 const TeamInfoButton = ({ teamName }: TeamInfoButtonProps) => {
-  const teamLink = teamLinks[teamName];
+  const teamLink = teamLinks[teamName as TeamName];
 
   if (!teamLink) return null; // 유효하지 않은 팀 -> 렌더링X
 
