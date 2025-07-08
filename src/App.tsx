@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SignUp from './pages/sign-up';
+import SignUp from './pages/SignUP';
 import Login from './pages/login';
 import Posting from './pages/posting';
 import Board from './pages/Board';
 import CategoryBoard from './pages/Category-Board';
-import Post from './pages/Post-Detail';
+import Post from './pages/PostDetail';
 import MyPage from './pages/My-Page/My-Page';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
