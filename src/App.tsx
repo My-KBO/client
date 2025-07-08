@@ -11,10 +11,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route
-          path="/baseballs/teams/:teamId"
-          element={<TeamDashboardPage />}
-        />
+        <Route path="/teams/:teamId" element={<TeamDashboardPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

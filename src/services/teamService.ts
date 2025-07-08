@@ -1,22 +1,19 @@
 import axios from 'axios';
 
-export const getTeamSchedule = async (teamName: string) => {
+const API_BASE = process.env.REACT_APP_API_BASE_URL;
+
+const fetchTeamData = async (teamName: string, endpoint: string) => {
   const response = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}/api/v1/teams/${teamName}/schedule`,
+    `${API_BASE}/api/v1/teams/${teamName}/${endpoint}`,
   );
   return response.data;
 };
 
-export const getTeamRecord = async (teamName: string) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}/api/v1/teams/${teamName}/results`,
-  );
-  return response.data;
-};
+export const getTeamSchedule = (teamName: string) =>
+  fetchTeamData(teamName, 'schedule');
 
-export const getTeamPlayer = async (teamName: string) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_API_BASE_URL}/api/v1/teams/${teamName}/topplayers`,
-  );
-  return response.data;
-};
+export const getTeamRecord = (teamName: string) =>
+  fetchTeamData(teamName, 'results');
+
+export const getTeamPlayer = (teamName: string) =>
+  fetchTeamData(teamName, 'topplayers');
