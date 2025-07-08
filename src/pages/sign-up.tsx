@@ -2,9 +2,12 @@
 import axios from 'axios';
 import{ ChangeEvent, FormEvent } from 'react';
 import{ useFormStore } from '../stores/store';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const signUp = () => {
+    const navigate = useNavigate();
     const { email, password, confirmPassword, username, team, setForm } = useFormStore();
 
     const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -67,6 +70,7 @@ const signUp = () => {
           );
           console.log('회원가입 성공:', response.data);
           alert('회원가입이 완료되었습니다!');
+          navigate('/login');
         } catch (error: any) {
           console.error('회원가입 실패:', error.response?.data || error.message);
           alert(`회원가입 실패: ${error.response?.data?.message || '서버 오류'}`);
