@@ -13,7 +13,8 @@ const NewsCard = ({ title, summary, date, url, thumbnail }: NewsCardProps) => {
     <a
       href={url}
       target="_blank"
-      className="w-64 mt-4 cursor-pointer bg-white border border-gray-200 rounded-lg overflow-hidden flex-shrink-0"
+      className="w-64 mt-4 bg-white border border-gray-200 rounded-lg overflow-hidden flex-shrink-0
+                 cursor-pointer hover:shadow-md hover:scale-105 transform transition duration-200"
     >
       {/* 썸네일 */}
       <div className="h-28 bg-gray-100 overflow-hidden">
