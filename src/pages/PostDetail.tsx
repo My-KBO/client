@@ -4,6 +4,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Post } from '../store/post-store';
 import api from '../services/axios';
 import { useUserStore } from '../store/store';
+import KboBanner from '../components/common/Board/KBOBanner';
 
 const fetchPost = async (postId: string) => {
   const res = await api.get(`/posts/${postId}`);
@@ -57,12 +58,7 @@ const PostDetail = () => {
 
   return (
     <div className="w-full bg-white flex flex-col items-center pt-20 relative">
-      <div className="w-full bg-kbo-blue flex justify-center items-center py-16 px-16">
-        <div className="w-[1100px] flex flex-col gap-6 text-white">
-          <h2 className="text-4xl font-bold">KBO 통합 팬 커뮤니티</h2>
-          <p className="text-base">함께 응원하고 소통하는 팬들의 공간입니다</p>
-        </div>
-      </div>
+      <KboBanner />
 
       {/* 게시글 */}
       <div className="w-full px-16 py-12 flex flex-col items-center gap-6">
@@ -76,7 +72,7 @@ const PostDetail = () => {
             <span>{post.authorNickname}</span>
             <span>{new Date(post.createdAt).toLocaleDateString()}</span>
             <span>조회수 {post.viewCount} </span>
-            <span>좋아요 {post.likeCount} </span>
+            <span>좋아요 {post.likeCount ?? 0} </span>
 
             {token && (
               <button
@@ -84,18 +80,18 @@ const PostDetail = () => {
                 disabled={isLiking}
                 className="ml-2 px-3 py-1 bg-[#002561] text-white rounded text-sm disabled:opacity-50"
               >
-                ❤️ 추천
+                ❤️ 좋아요
               </button>
             )}
           </div>
 
-          <div className="text-base text-black leading-relaxed whitespace-pre-wrap break-words">
+          <div className="border border-gray-300 rounded-lg p-6 bg-white shadow-sm text-base text-black leading-relaxed whitespace-pre-wrap break-words">
             {post.content}
           </div>
         </div>
 
         {/* 댓글 */}
-        <div className="w-[1100px] flex flex-col gap-2">
+        {/* <div className="w-[1100px] flex flex-col gap-2">
           <textarea
             className="w-full min-h-[80px] border border-gray-300 rounded-lg px-4 py-3 text-base resize-y"
             placeholder="댓글을 입력하세요"
@@ -104,7 +100,7 @@ const PostDetail = () => {
 
         <button className="w-auto px-8 py-3 bg-[#002561] text-white rounded-lg text-base font-medium hover:bg-[#001a4a] transition-colors">
           댓글 등록
-        </button>
+        </button> */}
       </div>
     </div>
   );

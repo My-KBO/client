@@ -20,6 +20,7 @@ const MyPage = () => {
       await api.post('/auth/logout');
       setUser(null);
       setAccessToken(null);
+      alert('로그아웃 되었습니다');
       navigate('/login');
     } catch (error) {
       console.error('로그아웃 실패:', error);
@@ -36,10 +37,10 @@ const MyPage = () => {
 
   return (
     <div className="w-full h-full bg-white flex flex-col items-center">
-      <section className="w-full bg-[#002561] py-10 text-white flex justify-center items-center gap-10">
-        <div className="w-[100px] h-[100px] rounded-full bg-gray-300" />
-        <div>
-          <h2 className="text-2xl font-bold mb-2">내 정보 관리</h2>
+      <section className="w-full bg-[#002561] flex justify-center items-center py-16 px-16 text-white">  
+        <div className="w-[1100px] flex flex-col gap-6">
+          <h2 className="text-4xl font-bold">내 정보 관리</h2>
+          <p className="text-base">내 정보와 응원하는 팀을 관리할 수 있습니다</p>
         </div>
       </section>
 

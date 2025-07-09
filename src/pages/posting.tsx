@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/axios';
 import { useUserStore } from '../store/store';
+import KboBanner from '../components/common/Board/KBOBanner';
 
 
 const Posting = () => {
@@ -11,6 +12,7 @@ const Posting = () => {
   const [category, setCategory] = useState('');
 
   const handleSubmit = async () => {
+    const user = useUserStore.getState().user;
     
     if (!title || !content || !category) {
       alert('모든 항목을 입력해주세요.');
@@ -22,7 +24,7 @@ const Posting = () => {
 
       await api.post(
         '/posts',
-        { title, content, category },
+        { title, content, category, nickname: user?.nickname, },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -50,14 +52,7 @@ const Posting = () => {
   return (
     <div className="w-screen flex justify-center bg-white">
       <div className="flex flex-col items-center w-[1440px] h-[1562px] bg-white relative isolate pt-[80px]">
-
-        {/* 배너 */}
-        <div className="w-full h-[294px] bg-[#002561] flex justify-center items-center py-[60px] z-0">
-          <div className="w-full max-w-[1100px] px-6 flex flex-col gap-[24px]">
-            <h1 className="text-white text-[40px] font-bold leading-[48px]">KBO 통합 팬 커뮤니티</h1>
-            <p className="text-white text-[16px] leading-[24px]">KBO를 함께 응원하고 소통하는 팬들의 공간입니다</p>
-          </div>
-        </div>
+        <KboBanner />
 
         {/* 작성 폼 */}
         <div className="flex flex-col items-center w-full px-[170px] py-[60px] gap-[20px] z-10">
