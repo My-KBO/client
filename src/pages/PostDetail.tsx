@@ -69,10 +69,10 @@ const PostDetail = () => {
         {/* 게시글 본문 */}
         <div className="w-[1100px] flex flex-col gap-6">
           <div className="flex gap-8 text-gray-500 text-sm font-semibold">
-            <span>{post.authorNickname}</span>
-            <span>{new Date(post.createdAt).toLocaleDateString()}</span>
-            <span>조회수 {post.viewCount} </span>
-            <span>좋아요 {post.likeCount ?? 0} </span>
+            <span>{post.user?.nickname || '익명'}</span>
+            <span>{new Date(post.created_at).toLocaleDateString()}</span>
+            <span>조회수 {post.views} </span>
+            <span>좋아요 {post.likes_count ?? 0} </span>
 
             {token && (
               <button

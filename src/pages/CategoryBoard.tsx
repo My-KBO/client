@@ -102,7 +102,7 @@ const CategoryPage = () => {
                   onClick={() => navigate(`/posts/${post.id}`)}
                 >
                   <td className="py-2 text-left">{post.title}</td>
-                  <td>{post.author}</td>
+                  <td>{post.user?.nickname || '익명'}</td>
                   <td>{post.date}</td>
                   <td>{post.views}</td>
                   <td>{post.likes}</td>

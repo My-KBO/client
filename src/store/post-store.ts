@@ -1,14 +1,17 @@
 import { create } from 'zustand';
 
 export interface Post {
-  id: number;
-  category: string;
+  d: number;
   title: string;
   content: string;
-  authorNickname: string;
-  createdAt: string;
-  likeCount: number;
-  viewCount: number;
+  views: number;
+  likes_count: number;
+  category: string;
+  created_at: string;
+  updated_at: string;
+  user: {
+    nickname: string;
+  };
 }
 
 interface PostStore {
