@@ -92,7 +92,7 @@ const Login = () => {
               onClick={() => navigate('/signup')}
               className="px-4 py-2 border border-[#002561] text-slate-800 rounded-md"
             >
-              회원가입으로 이동
+              회원가입
             </button>
           </form>
         </div>
