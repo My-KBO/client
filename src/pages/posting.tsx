@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/axios';
 import { useUserStore } from '../store/store';
-import KboBanner from '../components/common/Board/KBOBanner';
-
+import KboBanner from '../components/common/Board/KboBanner';
 
 const Posting = () => {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ const Posting = () => {
 
   const handleSubmit = async () => {
     const user = useUserStore.getState().user;
-    
+
     if (!title || !content || !category) {
       alert('모든 항목을 입력해주세요.');
       return;
@@ -24,24 +23,25 @@ const Posting = () => {
 
       await api.post(
         '/posts',
-        { title, content, category, },
+        { title, content, category },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       alert('게시글이 등록되었습니다!');
       window.scrollTo(0, 0);
-      navigate('/board'); 
-    } catch (error:any) {
+      navigate('/board');
+    } catch (error: any) {
       console.error('게시글 등록 실패:', error);
 
-      if (error.response?.status === 401) {   // 401에러 처리 
+      if (error.response?.status === 401) {
+        // 401에러 처리
         alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
         useUserStore.getState().setAccessToken(null);
-         
+
         navigate('/login', { state: { from: '/posting' } });
       } else {
         alert('게시글 등록에 실패했습니다.');
@@ -63,7 +63,9 @@ const Posting = () => {
               onChange={(e) => setCategory(e.target.value)}
               className="w-full h-[48px] px-[16px] py-[12px] border border-[#D9D9D9] rounded-[8px] text-[16px] text-[#1E1E1E] bg-white"
             >
-              <option value="" disabled hidden>카테고리를 선택하세요</option>
+              <option value="" disabled hidden>
+                카테고리를 선택하세요
+              </option>
               <option value="FREE">자유 게시판</option>
               <option value="LG">LG 트윈스</option>
               <option value="KIWOOM">키움 히어로즈</option>

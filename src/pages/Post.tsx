@@ -4,29 +4,36 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Post } from '../store/post-store';
 import api from '../services/axios';
 import { useUserStore } from '../store/store';
-import KboBanner from '../components/common/Board/KBOBanner';
+import KboBanner from '../components/common/Board/KboBanner';
 
 const fetchPost = async (postId: string) => {
   const res = await api.get(`/posts/${postId}`);
   return res.data;
 };
 
-const toggleLike = async ({postId, token} : { postId: string; token: string }) => {
+const toggleLike = async ({
+  postId,
+  token,
+}: {
+  postId: string;
+  token: string;
+}) => {
   const res = await api.post(
-    `/posts/${postId}/like`, {},
+    `/posts/${postId}/like`,
+    {},
     {
-      headers : {
+      headers: {
         Authorization: `Bearer ${token}`,
       },
-    });
+    },
+  );
   return res.data;
 };
 
 const PostDetail = () => {
   const { postId } = useParams<{ postId: string }>();
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const token = useUserStore.getState().accessToken;
-
 
   const {
     data: post,
@@ -38,9 +45,8 @@ const PostDetail = () => {
     enabled: !!postId,
   });
 
-
   const { mutate: likePost, status: likeStatus } = useMutation({
-    mutationFn: () => toggleLike({postId: postId!, token : token! }),
+    mutationFn: () => toggleLike({ postId: postId!, token: token! }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['postDetail', postId] });
     },
@@ -49,7 +55,7 @@ const PostDetail = () => {
     },
   });
   const isLiking = likeStatus === 'pending';
-  
+
   if (isLoading) return <div className="text-center mt-10">불러오는 중...</div>;
   if (isError || !post)
     return (

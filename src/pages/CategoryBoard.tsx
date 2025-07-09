@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../services/axios';
 import { teamKeyMap, TeamName } from '../utils/team/team-name-map';
 import { TEAM_DATA } from '../utils/team/team-data';
-import KboBanner from '../components/common/Board/KBOBanner';
+import KboBanner from '../components/common/Board/KboBanner';
 
 // 카테고리별 매핑 (팀 외 카테고리)
 const categoryMap: Record<string, string> = {
