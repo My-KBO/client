@@ -29,7 +29,7 @@ const NewsCard = ({ title, summary, date, url, thumbnail }: NewsCardProps) => {
       {/* 본문 */}
       <div className="p-4 text-sm h-[calc(100%-7rem)] flex flex-col justify-between">
         <div className="space-y-2">
-          <div className="font-semibold">{title}</div>
+          <div className="font-semibold line-clamp-2">{title}</div>
           <div className="text-xs text-gray-600 line-clamp-2">{summary}</div>
         </div>
         <div className="text-xs text-gray-500 mt-2">{date}</div>

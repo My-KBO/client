@@ -45,7 +45,6 @@ const FanComment = ({ teamName }: TeamPlayerProps) => {
           ))}
         </div>
       </div>
-      {/* <hr className="border-t border-gray-100 my-8 mt-16" /> */}
     </div>
   );
 };
