@@ -6,8 +6,7 @@ import { usePostStore } from '../store/post-store';
 import { teamKeyMap, TeamName } from '../utils/team/team-name-map';
 import { TEAM_DATA } from '../utils/team/team-data';
 import { teamEmblemMap } from '../utils/team/team-emblem-map';
-import KboBanner from '../components/common/Board/KBOBanner';
-
+import KboBanner from '../components/common/Board/KboBanner';
 
 // 카테고리별 정보 (팀 외 카테고리)
 const categoryList = [
@@ -138,7 +137,7 @@ const Board = () => {
                 >
                   <td className="py-2 text-left">{post.title}</td>
                   <td>{post.user?.nickname || '익명'}</td>
-                  <td>{post.created_at?.slice(0, 10)}</td>  
+                  <td>{post.created_at?.slice(0, 10)}</td>
                   <td>{post.views || 0}</td>
                   <td>{post.likes_count || 0}</td>
                 </tr>

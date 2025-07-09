@@ -3,12 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
-import SignUp from './pages/SignUP';
-import Login from './pages/login';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 import Board from './pages/Board';
 import CategoryBoard from './pages/CategoryBoard';
-import Posting from './pages/posting';
-import Post from './pages/PostDetail';
+import Posting from './pages/Posting';
+import Post from './pages/Post';
 import MyPage from './pages/My-Page/MyPage';
 import TeamDashboardPage from './pages/TeamDashboardPage';
 
