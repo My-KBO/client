@@ -1,6 +1,8 @@
 import React from 'react';
 import CommonButton from '../CommonButton/CommonButton';
 import FanCommentCard from './FanCommentCard';
+import { teamLinks } from '../../../utils/team/team-links';
+import { TeamName } from '../../../utils/team/team-name-map';
 
 const FanComments = [
   {
@@ -13,14 +15,27 @@ const FanComments = [
   },
 ];
 
-const FanComment = () => {
+type TeamPlayerProps = {
+  teamName: TeamName;
+};
+
+const FanComment = ({ teamName }: TeamPlayerProps) => {
+  const teamLink = teamLinks[teamName];
+
   return (
     <div className="mt-6 w-full max-w-5xl mx-auto">
       <div className="flex justify-between mb-16">
         {/* 제목 + 버튼 */}
         <div className="items-center px-8 mr-8">
           <h2 className="text-2xl font-semibold mb-4">팬들의 응원</h2>
-          <CommonButton variant="outlined">팬 커뮤니티 바로가기</CommonButton>
+          <CommonButton
+            variant="outlined"
+            onClick={() => {
+              window.location.href = teamLink.comment;
+            }}
+          >
+            팬 커뮤니티 바로가기
+          </CommonButton>
         </div>
 
         {/* 카드 리스트 */}
