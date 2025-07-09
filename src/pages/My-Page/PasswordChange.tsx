@@ -18,9 +18,10 @@ const PasswordChange = () => {
     try {
       const token = useUserStore.getState().accessToken;
 
-      await api.patch('/profile', 
+      await api.patch('/users/profile/password', 
       {
-        password : newPassword,
+        currentPassword :currentPassword,
+        newPassword : newPassword,
       },
       {
         headers : {
