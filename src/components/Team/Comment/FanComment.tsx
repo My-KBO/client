@@ -3,23 +3,42 @@ import CommonButton from '../CommonButton/CommonButton';
 import FanCommentCard from './FanCommentCard';
 import { teamLinks } from '../../../utils/team/team-links';
 import { TeamName } from '../../../utils/team/team-name-map';
+import { useQuery } from '@tanstack/react-query';
+import { getTeamComments } from '../../../services/teamService';
 
-const FanComments = [
-  {
-    fanName: '김 팬',
-    comment: '정말 최고의 팀입니다! 매 경기마다 정이 가네요. ',
-  },
-  {
-    fanName: '김 팬',
-    comment: '정말 최고의 팀입니다! 매 경기마다 정이 가네요. ',
-  },
-];
+type Comments = {
+  nickname: string;
+  title: string;
+};
 
 type TeamPlayerProps = {
   teamName: TeamName;
 };
 
 const FanComment = ({ teamName }: TeamPlayerProps) => {
+  const {
+    data: comments = [],
+    isLoading,
+    isError,
+  } = useQuery<Comments[]>({
+    queryKey: ['teamComments', teamName],
+    queryFn: () => getTeamComments(teamName),
+    staleTime: 1000 * 60 * 5,
+  });
+
+  if (isError) {
+    return (
+      <div className="text-center mt-4 text-red-500">
+        팀별 게시물을 불러오는 데 실패했습니다.
+      </div>
+    );
+  }
+
+  const parsedComments = comments.map((hotposts) => ({
+    fanName: hotposts.nickname,
+    comment: hotposts.title,
+  }));
+
   const teamLink = teamLinks[teamName];
 
   return (
@@ -40,7 +59,7 @@ const FanComment = ({ teamName }: TeamPlayerProps) => {
 
         {/* 카드 리스트 */}
         <div className="grid grid-cols-2 gap-4">
-          {FanComments.map((comment, index) => (
+          {parsedComments.map((comment, index) => (
             <FanCommentCard key={index} {...comment} />
           ))}
         </div>
