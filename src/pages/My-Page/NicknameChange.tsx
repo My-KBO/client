@@ -19,7 +19,7 @@ const NicknameChange = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log('내 정보:', res.data);
+        // console.log('내 정보:', res.data);
 
         setNickname(res.data.nickname);
       } catch (error: any) {
@@ -39,8 +39,8 @@ const NicknameChange = () => {
 
     try {
       await api.patch(
-        '/api/v1/profile',
-        { nickname: newNickname },
+        '/users/profile/nickname',
+        { newNickname },
         {
           headers: {
             Authorization: `Bearer ${token}`,
