@@ -17,3 +17,12 @@ export const getTeamRecord = (teamName: string) =>
 
 export const getTeamPlayer = (teamName: string) =>
   fetchTeamData(teamName, 'topplayers');
+
+export const getTeamComments = (teamName: string) =>
+  fetchTeamData(teamName, 'hotposts');
+
+export const getTeamNews = (teamName: string) =>
+  fetchTeamData(teamName, 'news');
+
+export const getTeamHighlight = (teamName: string) =>
+  fetchTeamData(teamName, 'highlight');

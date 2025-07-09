@@ -3,27 +3,33 @@ import { useUserStore } from '../store/store';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/axios';
 import { usePostStore } from '../store/post-store';
+import { teamKeyMap, TeamName } from '../utils/team/team-name-map';
+import { TEAM_DATA } from '../utils/team/team-data';
+import { teamEmblemMap } from '../utils/team/team-emblem-map';
 
-const teamList = [
-  { name: '통합 게시판', slug: 'GENERAL' },
-  { name: '자유 게시판', slug: 'FREE' },
-  { name: 'HOT 게시판', slug: 'HOT' },
-  { name: '한화 이글스', slug: 'HANHWA' },
-  { name: '삼성 라이온즈', slug: 'SAMSUNG' },
-  { name: '두산 베어스', slug: 'DOOSAN' },
-  { name: 'LG 트윈스', slug: 'LG' },
-  { name: '롯데 자이언츠', slug: 'LOTTE' },
-  { name: 'NC 다이노스', slug: 'NC' },
-  { name: 'KT 위즈', slug: 'KT' },
-  { name: 'SSG 랜더스', slug: 'SSG' },
-  { name: '키움 히어로즈', slug: 'KIWOOM' },
-  { name: 'KIA 타이거즈', slug: 'KIA' }
+
+// 카테고리별 정보 (팀 외 카테고리)
+const categoryList = [
+  { name: '통합 게시판', slug: 'GENERAL', emblem: '⚾' },
+  { name: '자유 게시판', slug: 'FREE', emblem: '💬' },
+  { name: 'HOT 게시판', slug: 'HOT', emblem: '🔥' },
 ];
 
 const Board = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<any[]>([]);
   const user = useUserStore((state) => state.user);
+
+  // 팀 목록 생성 함수
+  const getTeamList = () => {
+    const teams = Object.entries(teamKeyMap).map(([slug, teamName]) => ({
+      name: TEAM_DATA[teamName as TeamName]?.name || teamName,
+      slug,
+      emblem: teamEmblemMap[teamName as TeamName] || '⚾',
+    }));
+
+    return [...categoryList, ...teams];
+  };
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -33,8 +39,8 @@ const Board = () => {
             // category: 'GENERAL',
             //search: '',
             page: 1,
-            limit: 10
-          }
+            limit: 10,
+          },
         });
         console.log('응답:', res.data);
         setPosts(Array.isArray(res.data.data) ? res.data.data : []);
@@ -46,30 +52,43 @@ const Board = () => {
     fetchPosts();
   }, []);
 
-
   return (
     <div className="flex flex-col items-center pt-20 w-[1440px] h-[2390px] bg-white mx-auto relative">
-
       {/* Hero Section */}
       <section className="w-full h-[220px] bg-[#002561] text-white flex flex-col items-center justify-center">
         <h2 className="text-2xl font-semibold mb-2">KBO 통합 팬 커뮤니티</h2>
         <p className="text-sm">함께 응원하고 소통하는 팬들의 공간입니다.</p>
-
       </section>
 
       {/* 팀 아이콘 섹션 */}
       <section className="mt-12 w-[1100px]">
-        <div className="grid grid-cols-7 gap-y-10 gap-x-6">
-          {teamList.map((team, i) => (
+        <div className="grid grid-cols-7 gap-y-10 gap-x-6 justify-items-center items-center">
+          {getTeamList().map((team, i) => (
             <div
               key={i}
-              className="flex flex-col items-center cursor-pointer"
+              className="flex flex-col items-center justify-center cursor-pointer w-full h-[120px] gap-y-2"
               onClick={() => navigate(`/category/${team.slug}`)}
             >
-              <div className="w-[100px] h-[100px] bg-gray-200 rounded-full flex items-center justify-center text-3xl hover:scale-105 transition">
-                ⚾
+              <div
+                className={`w-[100px] flex items-center justify-center hover:scale-105 transition overflow-hidden ${
+                  ['GENERAL', 'FREE', 'HOT'].includes(team.slug)
+                    ? 'bg-gray-200 rounded-full h-[100px]'
+                    : 'h-auto'
+                }`}
+              >
+                {team.emblem.startsWith('http') ||
+                team.emblem.startsWith('data:') ||
+                team.emblem.includes('.') ? (
+                  <img
+                    src={team.emblem}
+                    alt={team.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-3xl">{team.emblem}</span>
+                )}
               </div>
-              <span className="text-sm mt-2 text-center">{team.name}</span>
+              <span className="text-sm text-center">{team.name}</span>
             </div>
           ))}
         </div>
@@ -115,8 +134,8 @@ const Board = () => {
               </tr>
             ) : (
               posts.map((post: any, i) => (
-                <tr 
-                  key={i} 
+                <tr
+                  key={i}
                   className="text-center border-b cursor-pointer hover:bg-gray-50"
                   onClick={() => navigate(`/posts/${post.id}`)}
                 >
