@@ -10,8 +10,8 @@ function Header() {
 
   const handleTeamInfoClick = () => {
     if (user && user.favoriteTeam) {
-      const teamSlug =
-        teamNameToKey[user.favoriteTeam as keyof typeof teamNameToKey];
+      const teamName = user.favoriteTeam.split(' ')[0];
+      const teamSlug = teamNameToKey[teamName as keyof typeof teamNameToKey];
 
       if (teamSlug) {
         navigate(`/teams/${teamSlug}`);
