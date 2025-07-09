@@ -20,6 +20,7 @@ const MyPage = () => {
       await api.post('/auth/logout');
       setUser(null);
       setAccessToken(null);
+      alert('로그아웃 되었습니다');
       navigate('/login');
     } catch (error) {
       console.error('로그아웃 실패:', error);
