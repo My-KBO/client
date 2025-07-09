@@ -1,30 +1,37 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Button } from '@mui/material';
-
-function Home() {
-  return (
-    <div>
-      <h1>Home Page</h1>
-      <Button variant="contained" color="primary">
-        MUI Button Test
-      </Button>
-      <h1 className="text-3xl font-bold text-green-500">Tailwind Test</h1>
-    </div>
-  );
-}
-
-function About() {
-  return <h1>My Page</h1>;
-}
+import SignUp from './pages/SignUP';
+import Login from './pages/Login';
+import Posting from './pages/Posting';
+import Board from './pages/Board';
+import CategoryBoard from './pages/CategoryBoard';
+import Post from './pages/PostDetail';
+import MyPage from './pages/My-Page/MyPage';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import HomePage from './pages/HomePage';
+import TeamDashboardPage from './pages/TeamDashboardPage';
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/mypage" element={<About />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/board" element={<Board />} />
+        <Route path="/category/:slug" element={<CategoryBoard />} />
+        <Route path="/posting" element={<Posting />} />
+        <Route path="/posts/:postId" element={<Post />} />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route
+          path="/baseballs/teams/:teamId"
+          element={<TeamDashboardPage />}
+        />
+        <Route path="/teams/:teamId" element={<TeamDashboardPage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
