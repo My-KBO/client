@@ -17,7 +17,7 @@ module.exports = {
         gray800: '#26282b',
         gray900: '#1b1d1f',
         'kbo-blue': '#002561',
-        'kbo-lightblue': '#00AEEf',
+        'kbo-light-blue': '#00AEEf',
         'kbo-red': '#ed1c24',
       },
     },
