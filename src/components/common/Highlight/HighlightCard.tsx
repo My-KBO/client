@@ -17,7 +17,7 @@ const HighlightCard = ({
       target="_blank"
       rel="noopener noreferrer"
       className="w-48 mt-4 bg-white border border-gray-100 rounded-md overflow-hidden flex-shrink-0
-                 hover:shadow-md hover:scale-105 transform transition duration-200 cursor-pointer"
+                 hover:shadow-md hover:scale-[1.03] transform transition duration-200 cursor-pointer"
     >
       <div className="bg-gray-100 h-28 overflow-hidden">
         {thumbnail && (
