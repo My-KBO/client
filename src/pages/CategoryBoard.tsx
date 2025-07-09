@@ -71,7 +71,7 @@ const CategoryPage = () => {
     <>
       <KboBanner />
 
-      <div className="w-[1100px] mx-auto pt-20">
+      <div className="w-[1200px] mx-auto pt-20 pb-24">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold">
             {getCategoryDisplayName(slug ?? '')}

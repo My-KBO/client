@@ -58,7 +58,7 @@ const Board = () => {
       <KboBanner />
 
       {/* 팀 카테고리 */}
-      <section className="mt-12 w-[1100px]">
+      <section className="mt-12 w-[1200px]">
         <div className="grid grid-cols-7 gap-y-10 gap-x-6 justify-items-center items-center">
           {getTeamList().map((team, i) => (
             <div
@@ -102,7 +102,7 @@ const Board = () => {
       </section> */}
 
       {/* 게시판 */}
-      <section className="mt-20 w-[1100px]">
+      <section className="mt-20 w-[1200px]">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-bold">통합 게시판</h3>
           <button
