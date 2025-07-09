@@ -51,14 +51,14 @@ export const useUserStore = create<UserState>()(
         user: state.user,
         accessToken: state.accessToken,
       }),
-      onRehydrateStorage: () => {
-        return (state) => {
-          // 함수가 있을 때만 호출
-          if (state?.setHasHydrated) {
-            state.setHasHydrated(true);
-          }
-        };
-      },
+      // onRehydrateStorage: () => {
+      //   return (state) => {
+      //     // 함수가 있을 때만 호출
+      //     if (state?.setHasHydrated) {
+      //       state.setHasHydrated(true);
+      //     }
+      //   };
+      // },
     }
   )
 );

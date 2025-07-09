@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useUserStore } from '../stores/store';
+import { useUserStore } from '../store/store';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/axios';
-import { usePostStore } from '../stores/post-store';
+import { usePostStore } from '../store/post-store';
 import { teamKeyMap, TeamName } from '../utils/team/team-name-map';
 import { TEAM_DATA } from '../utils/team/team-data';
 import { teamEmblemMap } from '../utils/team/team-emblem-map';
+
 
 // 카테고리별 정보 (팀 외 카테고리)
 const categoryList = [

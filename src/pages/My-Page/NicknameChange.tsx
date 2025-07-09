@@ -1,36 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/axios';
-import { useUserStore } from '../../stores/store';
+import { useUserStore } from '../../store/store';
 
 const NicknameChange = () => {
-  const [nickname, setNickname] = useState('');
-  const [newNickname, setNewNickname] = useState('');
   const navigate = useNavigate();
+  const user = useUserStore((state) => state.user);
+  const accessToken = useUserStore((state) => state.accessToken);
+  const setUser = useUserStore((state) => state.setUser);
 
-  const token = useUserStore.getState().accessToken;
-
-  // 현재 닉네임 불러오기
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await api.get('/profile', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log('내 정보:', res.data);
-
-        setNickname(res.data.nickname);
-      } catch (error: any) {
-        console.error('프로필 조회 실패:', error);
-        alert('현재 닉네임을 불러오지 못했습니다.');
-      }
-    };
-
-    fetchProfile();
-  }, [token]);
-
+  const [newNickname, setNewNickname] = useState('');
   const handleNicknameChange = async () => {
     if (!newNickname.trim()) {
       alert('새 닉네임을 입력해주세요.');
@@ -39,14 +18,17 @@ const NicknameChange = () => {
 
     try {
       await api.patch(
-        '/api/v1/profile',
-        { nickname: newNickname },
+        '/users/profile/nickname',
+        { newNickname },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
+      if (user) {
+        setUser({ ...user, nickname: newNickname });
+      }
 
       alert('닉네임이 변경되었습니다.');
       navigate('/');
@@ -65,7 +47,7 @@ const NicknameChange = () => {
           <label className="text-sm font-medium">현재 닉네임</label>
           <input
             type="text"
-            value={nickname}
+            value={user?.nickname || ''}
             disabled
             className="border border-gray-300 rounded px-3 py-2 w-full bg-gray-100 text-gray-500"
           />

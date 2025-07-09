@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../common/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUserStore } from '../../stores/store';
+import { useUserStore } from '../../store/store';
 
 function Header() {
   const navigate = useNavigate();

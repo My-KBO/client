@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/axios';
-import { useUserStore } from '../stores/store';
+import { useUserStore } from '../store/store';
 
 
 const Posting = () => {
@@ -31,6 +31,7 @@ const Posting = () => {
       );
 
       alert('게시글이 등록되었습니다!');
+      window.scrollTo(0, 0);
       navigate('/board'); 
     } catch (error:any) {
       console.error('게시글 등록 실패:', error);

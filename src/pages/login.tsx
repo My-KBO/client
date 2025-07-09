@@ -1,8 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-// import { loginAPI } from '../services/authAPI';
-import { useUserStore } from '../stores/store';
+import { useUserStore } from '../store/store';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
@@ -22,15 +21,29 @@ const Login = () => {
     axios.post('http://3.107.172.216:3333/api/v1/auth/login', form, {
       withCredentials: true, 
     }),
-    onSuccess: (res) => {
-      console.log('로그인 응답:', res);          
-      console.log('응답 데이터:', res.data);
+    onSuccess: async (res) => {          
 
       const { accessToken } = res.data;
-
       setAccessToken(accessToken);
-      alert('로그인 성공!');
-      navigate('/');
+      console.log('accessToken:', accessToken);
+
+      try {
+        const profileRes = await axios.get(
+          'http://3.107.172.216:3333/api/v1/users/profile',
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+            // withCredentials: true,
+          }
+        );
+
+        setUser(profileRes.data);
+        alert('로그인 성공!');
+        navigate('/');
+      } catch (err) {
+        console.error('프로필 불러오기 실패', err);
+      }
     },
     onError: () => {
       alert('로그인 실패. 이메일 또는 비밀번호를 확인하세요.');
