@@ -1,20 +1,38 @@
 type HighlightCardProps = {
-  matchup: string;
-  date: string;
-  location: string;
+  title: string;
+  publishedAt: string;
+  videoUrl: string;
+  thumbnail: string;
 };
 
-const HighlightCard = ({ matchup, date, location }: HighlightCardProps) => {
+const HighlightCard = ({
+  title,
+  publishedAt,
+  videoUrl,
+  thumbnail,
+}: HighlightCardProps) => {
   return (
-    <div className="w-48 mt-4  bg-white border border-gray-100 rounded-md overflow-hidden flex-shrink-0">
-      <div className="bg-gray-100 h-28" /> {/* 썸네일 */}
-      <div className="p-2 text-sm">
-        <div className="font-semibold mb-2">{matchup}</div>
-        <div className="text-xs text-gray-500">
-          {date} | {location}
-        </div>
+    <a
+      href={videoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-48 mt-4 bg-white border border-gray-100 rounded-md overflow-hidden flex-shrink-0
+                 hover:shadow-md hover:scale-[1.03] transform transition duration-200 cursor-pointer"
+    >
+      <div className="bg-gray-100 h-28 overflow-hidden">
+        {thumbnail && (
+          <img
+            src={thumbnail}
+            alt="썸네일"
+            className="w-full h-full object-cover"
+          />
+        )}
       </div>
-    </div>
+      <div className="p-2 text-sm">
+        <div className="font-semibold mb-2 line-clamp-2">{title}</div>
+        <div className="text-xs text-gray-500">{publishedAt}</div>
+      </div>
+    </a>
   );
 };
 
