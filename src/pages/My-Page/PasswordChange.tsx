@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import api from '../../services/axios'; // Axios 인스턴스 (token 포함되어야 함)
 import { useNavigate } from 'react-router-dom';
-import { useUserStore } from '../../stores/store';
+import { useUserStore } from '../../store/store';
 
 const PasswordChange = () => {
   const [currentPassword, setCurrentPassword] = useState('');

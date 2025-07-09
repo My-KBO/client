@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import{ ChangeEvent, FormEvent } from 'react';
-import{ useFormStore } from '../stores/store';
+import{ useFormStore } from '../store/store';
 import { useNavigate } from 'react-router-dom';
 
 

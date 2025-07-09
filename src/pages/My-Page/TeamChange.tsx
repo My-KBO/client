@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/axios';
-import { useUserStore } from '../../stores/store';
+import { useUserStore } from '../../store/store';
 
 const teamOptions = [
   'LG 트윈스', '두산 베어스', 'SSG 랜더스', 'KT wiz', 'NC 다이노스', 'KIA 타이거즈', '롯데 자이언츠', '삼성 라이온즈', '한화 이글스', '키움 히어로즈',

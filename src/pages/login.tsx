@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 // import { loginAPI } from '../services/authAPI';
-import { useUserStore } from '../stores/store';
+import { useUserStore } from '../store/store';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useUserStore } from '../stores/store';
+import { useUserStore } from '../store/store';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/axios';
-import { usePostStore } from '../stores/post-store';
+import { usePostStore } from '../store/post-store';
 
 const teamList = [
   { name: '통합 게시판', slug: 'GENERAL' },

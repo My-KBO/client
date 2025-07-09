@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/axios';
-import { useUserStore } from '../stores/store';
+import { useUserStore } from '../store/store';
 
 
 const Posting = () => {
