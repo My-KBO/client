@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Post } from '../stores/post-store';
 import api from '../services/axios';
 
@@ -9,15 +9,29 @@ const fetchPost = async (postId: string) => {
     return res.data;
   };
 
+const toggleLike = async (postId: string) => {
+  const res = await api.post(`/posts/${postId}/like`);
+  return res.data;
+};
+
 const PostDetail = () => {
    
   const { postId } = useParams<{ postId: string }>();
+  const queryClient = useQueryClient()
 
   const { data: post, isLoading, isError } = useQuery<Post>({
     queryKey: ['postDetail', postId],
     queryFn: () => fetchPost(postId!),
     enabled: !!postId,
   });
+
+  const { mutate: likePost, status: likeStatus } = useMutation({
+    mutationFn: () => toggleLike(postId!),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['postDetail', postId] });
+    },
+  });
+  const isLiking = likeStatus === 'pending';
   
   if (isLoading) return <div className="text-center mt-10">불러오는 중...</div>;
   if (isError || !post) return <div className="text-center mt-10">게시글을 불러오지 못했습니다.</div>;  
@@ -46,7 +60,15 @@ const PostDetail = () => {
             <span>{new Date(post.createdAt).toLocaleDateString()}</span>
             <span>조회수 {post.viewCount} </span>
             <span>좋아요 {post.likeCount} </span>
-          </div>
+
+          <button
+              onClick={() => likePost()}
+              disabled={isLiking}
+              className="ml-2 px-3 py-1 bg-[#002561] text-white rounded text-sm disabled:opacity-50"
+          >
+              ❤️ 추천
+          </button>
+        </div>
 
           <div className="text-[16px] text-black leading-[28px]">
             {post.content}
