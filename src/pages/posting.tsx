@@ -6,24 +6,10 @@ import { useUserStore } from '../stores/store';
 
 const Posting = () => {
   const navigate = useNavigate();
-  // const user = useUserStore((state) => state.user);
-  // const hasHydrated = useUserStore((state) => state.hasHydrated);
-  
-  // 상태값 선언
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
 
-  // useEffect(() => {
-  // //   if (!hasHydrated) return;
-
-  // //   if (hasHydrated && !user) {
-  // //     alert('로그인이 필요합니다.');
-  // //     navigate('/login', { state: { from: '/posting' } });
-  // //   }
-  // // }, [hasHydrated, user, navigate]);
-
-  // 글 작성 요청
   const handleSubmit = async () => {
     
     if (!title || !content || !category) {
@@ -52,7 +38,7 @@ const Posting = () => {
       if (error.response?.status === 401) {   // 401에러 처리 
         alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
         useUserStore.getState().setAccessToken(null);
-        // useUserStore.getState().setUser?.(null); // setUser 쓸 경우 
+         
         navigate('/login', { state: { from: '/posting' } });
       } else {
         alert('게시글 등록에 실패했습니다.');
