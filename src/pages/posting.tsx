@@ -24,7 +24,7 @@ const Posting = () => {
 
       await api.post(
         '/posts',
-        { title, content, category, nickname: user?.nickname, },
+        { title, content, category, },
         {
           headers: {
             Authorization: `Bearer ${token}`,

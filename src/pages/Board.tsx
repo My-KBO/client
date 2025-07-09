@@ -137,10 +137,10 @@ const Board = () => {
                   onClick={() => navigate(`/posts/${post.id}`)}
                 >
                   <td className="py-2 text-left">{post.title}</td>
-                  <td>{post.author || '익명'}</td>
-                  <td>{post.createdAt?.slice(0, 10)}</td>
+                  <td>{post.user?.nickname || '익명'}</td>
+                  <td>{post.created_at?.slice(0, 10)}</td>  
                   <td>{post.views || 0}</td>
-                  <td>{post.likes || 0}</td>
+                  <td>{post.likes_count || 0}</td>
                 </tr>
               ))
             )}
