@@ -95,7 +95,7 @@ const PostDetail = () => {
         </div>
 
         {/* 댓글 */}
-        <div className="w-[1100px] flex flex-col gap-2">
+        {/* <div className="w-[1100px] flex flex-col gap-2">
           <textarea
             className="w-full min-h-[80px] border border-gray-300 rounded-lg px-4 py-3 text-base resize-y"
             placeholder="댓글을 입력하세요"
@@ -104,7 +104,7 @@ const PostDetail = () => {
 
         <button className="w-auto px-8 py-3 bg-[#002561] text-white rounded-lg text-base font-medium hover:bg-[#001a4a] transition-colors">
           댓글 등록
-        </button>
+        </button> */}
       </div>
     </div>
   );
