@@ -54,13 +54,13 @@ const Board = () => {
 
   return (
     <div className="flex flex-col items-center pt-20 w-[1440px] h-[2390px] bg-white mx-auto relative">
-      {/* Hero Section */}
+      
       <section className="w-full h-[220px] bg-[#002561] text-white flex flex-col items-center justify-center">
         <h2 className="text-2xl font-semibold mb-2">KBO 통합 팬 커뮤니티</h2>
         <p className="text-sm">함께 응원하고 소통하는 팬들의 공간입니다.</p>
       </section>
 
-      {/* 팀 아이콘 섹션 */}
+      {/* 팀 카테고리 */}
       <section className="mt-12 w-[1100px]">
         <div className="grid grid-cols-7 gap-y-10 gap-x-6 justify-items-center items-center">
           {getTeamList().map((team, i) => (

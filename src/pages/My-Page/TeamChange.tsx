@@ -8,48 +8,31 @@ const teamOptions = [
 ];
 
 const TeamChange = () => {
-  const [currentTeam, setCurrentTeam] = useState('');
-  const [newTeam, setNewTeam] = useState('');
   const navigate = useNavigate();
+  const user = useUserStore((state) => state.user);
+  const accessToken = useUserStore((state) => state.accessToken);
+  const setUser = useUserStore((state) => state.setUser);
 
-  const token = useUserStore.getState().accessToken;
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await api.get('/profile', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        const profile = res.data?.data ?? res.data;
-        setCurrentTeam(profile.favoriteTeam);
-      } catch (error: any) {
-        console.error('팀 정보 불러오기 실패:', error);
-        alert('현재 팀 정보를 불러오지 못했습니다.');
-      }
-    };
-
-    fetchProfile();
-  }, [token]);
-
+  const [newFavoriteTeam, setNewFavoriteTeam] = useState('');
   const handleTeamChange = async () => {
-    if (!newTeam) {
+    if (!newFavoriteTeam.trim()) {
       alert('변경할 팀을 선택해주세요.');
       return;
     }
 
     try {
       await api.patch(
-        '/profile',
-        { favoriteTeam: newTeam },
+        'users/profile/team',
+        { newFavoriteTeam },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
+      if (user) {
+        setUser({ ...user, favoriteTeam : newFavoriteTeam });
+      }
 
       alert('좋아하는 팀이 변경되었습니다.');
       navigate('/');
@@ -68,7 +51,7 @@ const TeamChange = () => {
           <label className="text-sm font-medium">현재 응원하는 팀</label>
           <input
             type="text"
-            value={currentTeam}
+            value={user?.favoriteTeam || ''}
             disabled
             className="border border-gray-300 rounded px-3 py-2 w-full bg-gray-100 text-gray-500"
           />
@@ -77,8 +60,8 @@ const TeamChange = () => {
         <div className="flex flex-col gap-1">
           <label className="text-sm font-medium"> 새로 이적할 팀 </label>
           <select
-            value={newTeam}
-            onChange={(e) => setNewTeam(e.target.value)}
+            value={newFavoriteTeam}
+            onChange={(e) => setNewFavoriteTeam(e.target.value)}
             className="border border-gray-300 rounded px-3 py-2 w-full"
           >
             <option value="" disabled hidden>
